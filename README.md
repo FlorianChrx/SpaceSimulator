@@ -1,8 +1,9 @@
 # SpaceSimulator
 
 ## Team
-- Chiraux Florian
-- Carpentier Madeline
+* Chiraux Florian
+* Carpentier Madeline
+* Rossez Ryan
 
 ## Subject
 
