@@ -1,6 +1,6 @@
 package modele;
 
-import java.util.Iterator;
+import java.util.Map;
 
 /**
  * @Date 20/09/2019
@@ -8,21 +8,14 @@ import java.util.Iterator;
  *Class intérable 
  */
 
-public class SteppedCalculator implements Iterator{
+public class SteppedCalculator implements Calculator{
 	//Les attributs
 	protected Map<Entite, Trajectoire> liste;
-	
-	
-	@Override
-	public boolean hasNext() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	@Override
-	public Object next() {
+	public void CalculNextStep() {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

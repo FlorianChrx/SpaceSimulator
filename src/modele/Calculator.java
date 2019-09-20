@@ -8,5 +8,5 @@ package modele;
  */
 public interface Calculator {
 	
-	public void CalculStepped();
+	public void CalculNextStep();
 }
