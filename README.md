@@ -4,7 +4,7 @@
 * Chiraux Florian
 * Carpentier Madeline
 * Rossez Ryan
-* Lefranc Neo
+* Lefranc Néo
 
 ## Subject
 
