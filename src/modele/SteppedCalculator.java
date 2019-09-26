@@ -9,7 +9,7 @@ package modele;
 
 public class SteppedCalculator implements Calculator{
 	//Les attributs
-	protected final double G = 6.6742 * Math.pow(10, -11);//Constante gravitationnelle;
+	protected final double G = 6.6742 * Math.pow(10, -10);//Constante gravitationnelle en m3.kg^-1.s^-1;
 
 	//Les méthodes
 	@Override

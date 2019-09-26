@@ -24,5 +24,4 @@ public class Point {
 		double save = (this.getX() - point.getX()) + this.getY() - point.getY();
 		return save;
 	}
-	
 }
