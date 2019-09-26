@@ -146,6 +146,13 @@ public class Trajectoire {
 	public double getPas() {
 		return pas;
 	}
+
+	public void addVitX(double vitx) {
+		this.vitx.add(vitx);
+	}
 	
+	public void addVitY(double vity) {
+		this.vity.add(vity);
+	}
 	
 }

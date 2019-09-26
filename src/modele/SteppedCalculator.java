@@ -1,29 +1,37 @@
 package modele;
 
+import java.util.List;
 
 /**
  * @Date 20/09/2019
  * @author carpentm
- *Class intérable 
+ * Class intérable 
  */
 
-public class SteppedCalculator implements Calculator{
+public class SteppedCalculator implements Calculator {
 	//Les attributs
 	protected final double G = 6.6742 * Math.pow(10, -10);//Constante gravitationnelle en m3.kg^-1.s^-1;
+	/**
+	 * Indice de la step en cours de calcul
+	 */
+	protected int idxStep;
+	
 
 	//Les méthodes
-	@Override
+	
 	/**
 	 * Permet de calculer le prochain point et de l'ajouter a la liste des points sur la trajectoire
 	 */
-	public void CalculNextStep(EntiteMobile p) {
-			double x = p.getTrajectoire().getLastPoint().getX() + p.getTrajectoire().getLastVitX()/p.getTrajectoire().getPas();
-			double y = p.getTrajectoire().getLastPoint().getY() + p.getTrajectoire().getLastVitY()/p.getTrajectoire().getPas();
+	public void CalculNextStep(List<EntiteMobile> entities) {
+		for (EntiteMobile entiteMobile : entities) {
+			double x = entiteMobile.getTrajectoire().getPoint(idxStep).getX() + entiteMobile.getTrajectoire().getVitX(idxStep)/entiteMobile.getTrajectoire().getPas();
+			double y = entiteMobile.getTrajectoire().getPoint(idxStep).getY() + entiteMobile.getTrajectoire().getVitY(idxStep)/entiteMobile.getTrajectoire().getPas();
 			
 			Point nouvePoint = new Point(x, y);
-			
-			p.setPoint(nouvePoint);
-			p.getTrajectoire().addLocalisation(nouvePoint);
+			entiteMobile.getTrajectoire().addLocalisation(nouvePoint);
+			entiteMobile.getTrajectoire().addVitX(0.00);
+			entiteMobile.getTrajectoire().addVitY(0.00);
+		}	
 	}
 	
 	public double VitesseXVaisseau() {
@@ -38,11 +46,11 @@ public class SteppedCalculator implements Calculator{
 		return 0;
 	}
 	
-	public double ForceGravitationnel(Vaisseau vaisseau, Entite entite) {
-		double distance = vaisseau.getPoint().distance(entite.getPoint());
-		Vecteur vecteur = new Vecteur(vaisseau.getPoint().getX(), entite.getPoint().getX());
+	public double ForceGravitationnel(Entite e1, Entite e2) {
+		double distance = e1.getPoint().distance(e2.getPoint());
+		//Vecteur vecteur = new Vecteur(e1.getPoint().getX(), e2.getPoint().getX());
 		
-		return -this.G * ((vaisseau.masse * entite.masse) / Math.pow(distance, 2));
+		return -this.G * ((e1.masse * e2.masse) / Math.pow(distance, 2));
 		
 	}
 	

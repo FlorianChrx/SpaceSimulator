@@ -3,19 +3,17 @@ package modele;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.geometry.Point2D;
-
 public class SystemeSolaire {
 	
 	protected List<EntiteMobile> entityList = new ArrayList<EntiteMobile>();
 	protected Calculator calcul = new SteppedCalculator();
-	protected Point2D entityCenter = new Point2D(0,0);
+	protected Point entityCenter = new Point(0,0);
 
-	public Point2D getEntityCenter() {
+	public Point getEntityCenter() {
 		return entityCenter;
 	}
 
-	public void setEntityCenter(Point2D entityCenter) {
+	public void setEntityCenter(Point entityCenter) {
 		this.entityCenter = entityCenter;
 	}
 
