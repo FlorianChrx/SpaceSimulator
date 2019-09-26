@@ -3,14 +3,14 @@ package modele;
 import javafx.geometry.Point2D;
 
 public abstract class Entite {
-	protected Point2D position;
+	protected Point position;
 	protected double masse;
 	protected double rayon;
 	protected String name;
 	
 	
 
-	public Entite(Point2D position, double masse, double rayon, String name) {
+	public Entite(Point position, double masse, double rayon, String name) {
 		this.position = position;
 		this.masse = masse;
 		this.rayon = rayon;
@@ -21,11 +21,11 @@ public abstract class Entite {
 		return masse;
 	}
 
-	public Point2D getPosition() {
+	public Point getPosition() {
 		return position;
 	}
 
-	public void setPosition(Point2D position) {
+	public void setPosition(Point position) {
 		this.position = position;
 	}
 
@@ -49,16 +49,9 @@ public abstract class Entite {
 		this.rayon = rayon;
 	}
 
-	public Point2D getPoint() {
-		return position;
-	}
-
-	public void setPoint(Point2D point) {
-		this.position = point;
-	}
 	
-	public double ecart(Entite e) {
-		return position.distance(e.getPoint());
+	public double ecart(Point point) {
+		return position.distance(point);
 	}
 	
 	
