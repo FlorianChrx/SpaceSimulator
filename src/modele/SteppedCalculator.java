@@ -28,9 +28,9 @@ public class SteppedCalculator implements Calculator {
 			double y = entiteMobile.getTrajectoire().getPoint(idxStep).getY() + entiteMobile.getTrajectoire().getVitY(idxStep)/entiteMobile.getTrajectoire().getPas();
 			
 			Point nouvePoint = new Point(x, y);
+			Vecteur nouveVecteur = new Vecteur(0,0);
 			entiteMobile.getTrajectoire().addLocalisation(nouvePoint);
-			entiteMobile.getTrajectoire().addVitX(0.00);
-			entiteMobile.getTrajectoire().addVitY(0.00);
+			entiteMobile.getTrajectoire().addVector(nouveVecteur);
 		}	
 	}
 	
