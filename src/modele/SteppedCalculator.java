@@ -15,7 +15,11 @@ public class SteppedCalculator implements Calculator{
 	@Override
 	public void CalculNextStep() {
 		// TODO Auto-generated method stub
-		
 	}
-
+	
+	
+	
+	
+	
+	
 }
