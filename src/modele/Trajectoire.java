@@ -19,6 +19,8 @@ public class Trajectoire {
 	 * Attributs representant la trajectoire à travers une succession de points
 	 */
 	protected List<Point2D> localisations;
+	protected List<Double> vitx;
+	protected List<Double> vity;
 	
 	/**
 	 * Attribut représentant le pas entre chaque calcul de point
@@ -48,6 +50,22 @@ public class Trajectoire {
 	 */
 	public Point2D getPoint(int idx) {
 		return localisations.get(idx);
+	}
+	
+	public double getLastVitX() {
+		return getVitX(vitx.size()-1);
+	}
+	
+	public double getVitX(int idx) {
+		return vitx.get(idx);
+	}
+		
+    public double getLastVitY() {
+    	return getVitY(vity.size()-1);
+	}
+    
+    public double getVitY(int idx) {
+    	return vity.get(idx);
 	}
 
 	@Override
@@ -94,15 +112,25 @@ public class Trajectoire {
 		this.pas = pas;
 	}
 	
+	/**
+	 * Constructeur ne prenant que le pas et initialisant une nouvelle liste de points
+	 * @param pas
+	 */
 	public Trajectoire(double pas) {
 		this(new ArrayList<Point2D>(), pas);
 	}
 	
+	/**
+	 * Constructeur ne prenant aucun paramètre, initialise une nouvelle liste de points
+	 * et utilise le pas par défaut defini dans le fichier config
+	 * @throws Exception
+	 */
 	public Trajectoire() throws Exception {
 		Properties props = new Properties();
 		new File("config/").mkdirs();
 		try {
 			props.load(new FileInputStream("config/config.yml"));
+			pas = Double.parseDouble(props.getProperty("pas"));
 		} catch (IOException e) {
 			throw new Exception("Fichier de configuration manquant");
 		}
