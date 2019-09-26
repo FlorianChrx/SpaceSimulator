@@ -199,6 +199,10 @@ public class Trajectoire {
 	public double getPas() {
 		return pas;
 	}
+	
+	public void addVector(Vector v) {
+		vecteurs.add(v);
+	}
 
 	/**
 	 * Ancienne méthode permettant d'ajouter une coordonée de vecteur
