@@ -200,7 +200,7 @@ public class Trajectoire {
 		return pas;
 	}
 	
-	public void addVector(Vector v) {
+	public void addVector(Vecteur v) {
 		vecteurs.add(v);
 	}
 
