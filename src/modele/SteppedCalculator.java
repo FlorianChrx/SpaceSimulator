@@ -15,7 +15,7 @@ public class SteppedCalculator implements Calculator{
 
 	@Override
 	public void CalculNextStep(EntiteMobile p) {
-		// TODO Auto-generated method stub
+		
 	}
 	
 	public double VitesseX() {
