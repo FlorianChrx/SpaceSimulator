@@ -11,11 +11,27 @@ import java.util.Map;
 public class SteppedCalculator implements Calculator{
 	//Les attributs
 	protected Map<Entite, Trajectoire> liste;
+	protected double acceleration;
 
 	@Override
-	public void CalculNextStep() {
+	public void CalculNextStep(EntiteMobile p) {
 		// TODO Auto-generated method stub
+		
 	}
+	
+	public double VitesseX() {
+		return 0;
+	}
+	
+	public double VitesseY() {
+		return 0;
+	}
+	
+	public double acceleration() {
+		return 0;
+	}
+	
+	
 	
 	
 	
