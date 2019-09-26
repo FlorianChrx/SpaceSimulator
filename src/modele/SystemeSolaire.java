@@ -8,7 +8,7 @@ import javafx.geometry.Point2D;
 public class SystemeSolaire {
 	
 	protected List<EntiteMobile> entityList = new ArrayList<EntiteMobile>();
-	protected Calculator calcul = new Calculator();
+	protected Calculator calcul = new SteppedCalculator();
 	protected Point2D entityCenter = new Point2D(0,0);
 
 	public Point2D getEntityCenter() {
@@ -31,9 +31,6 @@ public class SystemeSolaire {
 		return calcul;
 	}
 
-	public void setCalcul(Calculator calcul) {
-		this.calcul = calcul;
-	}
 	
 	
 	
