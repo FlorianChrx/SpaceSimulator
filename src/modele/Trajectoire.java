@@ -1,6 +1,5 @@
 package modele;
 
-import java.awt.geom.Point2D;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,14 +11,28 @@ import java.io.File;
  * @Date 20/09/2019
  * @author CHIRAUX Florian
  *
- * Classe permettant de représenter une trajectoire: cette 
+ * Classe permettant de représenter une trajectoire: la succesion de point et ses vecteurs vitesse associés
+ * ATTENTION: si vous utilisez les méthodes deprecated, utiliser uniquement cette partie car le nouveau fonctionnement 
+ * 			  est complètement dissocié
  */
 public class Trajectoire {
 	/**
-	 * Attributs representant la trajectoire à travers une succession de points
+	 * Attribut representant la trajectoire à travers une succession de points
 	 */
-	protected List<Point2D> localisations;
+	protected List<Point> localisations;
+	/**
+	 * Attribut représentant la liste des vecteurs liés aux points de la trajectoire
+	 */
+	protected List<Vecteur> vecteurs;
+	/**
+	 * Ancien attribut de vecteur vitesse, voué à disparaître
+	 */
+	@Deprecated
 	protected List<Double> vitx;
+	/**
+	 * Ancien attribut de vecteur vitesse, voué à disparaître
+	 */
+	@Deprecated
 	protected List<Double> vity;
 	
 	/**
@@ -31,7 +44,7 @@ public class Trajectoire {
 	 * permet d'ajouter un point à la trajectoire;
 	 * @param point
 	 */
-	public void addLocalisation(Point2D point) {
+	public void addLocalisation(Point point) {
 		localisations.add(point);
 	}
 	
@@ -39,7 +52,7 @@ public class Trajectoire {
 	 * permet d'obtenir le dernier point de la trajectoire;
 	 * @return
 	 */
-	public Point2D getLastPoint() {
+	public Point getLastPoint() {
 		return getPoint(localisations.size()-1);
 	}
 	
@@ -48,22 +61,59 @@ public class Trajectoire {
 	 * @param idx l'indice du point recherché
 	 * @return
 	 */
-	public Point2D getPoint(int idx) {
+	public Point getPoint(int idx) {
 		return localisations.get(idx);
 	}
 	
+	/**
+	 * Méthode d'accès à un vecteur de la trajectoire à l'indice donné
+	 * @param idx l'index du vecteur dans la trajectoire
+	 * @return Le vecteur à cette position de la trajectoire
+	 */
+	public Vecteur getVecteur(int idx) {
+		return vecteurs.get(idx);
+	}
+	
+	/**
+	 * Méthode d'accès au dernier vecteur de la trajectoire
+	 * @return le dernier vecteur de la trajectoire
+	 */
+	public Vecteur getLastVecteur() {
+		return getVecteur(vecteurs.size()-1);
+	}
+	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (x)
+	 */
+	@Deprecated
 	public double getLastVitX() {
 		return getVitX(vitx.size()-1);
 	}
 	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (x)
+	 */
+	@Deprecated
 	public double getVitX(int idx) {
 		return vitx.get(idx);
 	}
-		
+	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (y)
+	 */
+	@Deprecated	
     public double getLastVitY() {
     	return getVitY(vity.size()-1);
 	}
-    
+
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (y)
+	 */
+	@Deprecated
     public double getVitY(int idx) {
     	return vity.get(idx);
 	}
@@ -106,7 +156,7 @@ public class Trajectoire {
 	 * @param localisations
 	 * @param pas
 	 */
-	public Trajectoire(List<Point2D> localisations, double pas) {
+	public Trajectoire(List<Point> localisations, double pas) {
 		super();
 		this.localisations = localisations;
 		this.pas = pas;
@@ -117,7 +167,15 @@ public class Trajectoire {
 	 * @param pas
 	 */
 	public Trajectoire(double pas) {
-		this(new ArrayList<Point2D>(), pas);
+		this(new ArrayList<Point>(), pas);
+	}
+	/**
+	 * A modifier
+	 * Constructeur mettant le pas par default 
+	 * @param localisation
+	 */
+	public Trajectoire(List<Point> localisation) {
+		this(localisation, 0.1);
 	}
 	
 	/**
@@ -135,4 +193,35 @@ public class Trajectoire {
 			throw new Exception("Fichier de configuration manquant");
 		}
 	}
+	
+	/**
+	 * Fonction permettant d'obtenir le pas actuel de cette trajectoire
+	 * @return un double représentant le pas de la trajectoire (le temps qui s'écoule entre 2 points)
+	 */
+	public double getPas() {
+		return pas;
+	}
+	
+	public void addVector(Vecteur v) {
+		vecteurs.add(v);
+	}
+
+	/**
+	 * Ancienne méthode permettant d'ajouter une coordonée de vecteur
+	 * @param vitx
+	 */
+	@Deprecated
+	public void addVitX(double vitx) {
+		this.vitx.add(vitx);
+	}
+	
+	/**
+	 * Ancienne méthode permettant d'ajouter une coordonée de vecteur
+	 * @param vity
+	 */
+	@Deprecated
+	public void addVitY(double vity) {
+		this.vity.add(vity);
+	}
+	
 }
