@@ -13,6 +13,9 @@ public class SteppedCalculator implements Calculator{
 
 	//Les méthodes
 	@Override
+	/**
+	 * Permet de calculer le prochain point et de l'ajouter a la liste des points sur la trajectoire
+	 */
 	public void CalculNextStep(EntiteMobile p) {
 			double x = p.getTrajectoire().getLastPoint().getX() + p.getTrajectoire().getLastVitX()/p.getTrajectoire().getPas();
 			double y = p.getTrajectoire().getLastPoint().getY() + p.getTrajectoire().getLastVitY()/p.getTrajectoire().getPas();
@@ -35,11 +38,19 @@ public class SteppedCalculator implements Calculator{
 		return 0;
 	}
 	
-	public void ForceGravitationnel() {
+	public double ForceGravitationnel(Vaisseau vaisseau, Entite entite) {
+		double distance = vaisseau.getPoint().distance(entite.getPoint());
+		Vecteur vecteur = new Vecteur(vaisseau.getPoint().getX(), entite.getPoint().getX());
+		
+		return -this.G * ((vaisseau.masse * entite.masse) / Math.pow(distance, 2));
 		
 	}
 	
 	public void euleurExplicite() {
+		
+	}
+	
+	public void CalculeTrajectoire() {
 		
 	}
 	
