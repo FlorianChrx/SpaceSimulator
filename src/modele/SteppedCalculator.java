@@ -11,10 +11,11 @@ import java.util.Map;
 public class SteppedCalculator implements Calculator{
 	//Les attributs
 	protected Map<Entite, Trajectoire> liste;
+	
+	
 
 	@Override
 	public void CalculNextStep() {
-		// TODO Auto-generated method stub
 		
 	}
 
