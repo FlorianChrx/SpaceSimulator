@@ -1,7 +1,5 @@
 package modele;
 
-import java.util.Map;
-
 import javafx.geometry.Point2D;
 
 /**
@@ -12,23 +10,25 @@ import javafx.geometry.Point2D;
 
 public class SteppedCalculator implements Calculator{
 	//Les attributs
-	protected Map<Entite, Trajectoire> liste;
 	protected final double G = 6.6742 * Math.pow(10, -11);//Constante gravitationnelle;
 
+	//Les méthodes
 	@Override
 	public void CalculNextStep(EntiteMobile p) {
-		double x = p.getPoint().getX() + p.getVitx()/p.getTrajectoire().getPas();
-		double y = p.getPoint().getY() + p.getVity()/p.getTrajectoire().getPas();
-		Point2D nouvePoint = new Point2D(x, y);
-		
-		
+			double x = p.getTrajectoire().getLastPoint().getX() + p.getTrajectoire().getLastVitX()/p.getTrajectoire().getPas();
+			double y = p.getTrajectoire().getLastPoint().getY() + p.getTrajectoire().getLastVitY()/p.getTrajectoire().getPas();
+			
+			Point2D nouvePoint = new Point2D(x, y);
+			
+			p.setPoint(nouvePoint);
+			p.getTrajectoire().addLocalisation(nouvePoint);
 	}
 	
-	public double VitesseX() {
+	public double VitesseXVaisseau() {
 		return 0;
 	}
 	
-	public double VitesseY() {
+	public double VitesseYVaisseaux() {
 		return 0;
 	}
 	
@@ -39,6 +39,12 @@ public class SteppedCalculator implements Calculator{
 	public void ForceGravitationnel() {
 		
 	}
+	
+	public void euleurExplicite() {
+		
+	}
+	
+	
 	
 	
 	

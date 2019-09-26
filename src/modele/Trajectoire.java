@@ -1,11 +1,13 @@
 package modele;
 
-import java.awt.geom.Point2D;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+
+import javafx.geometry.Point2D;
+
 import java.io.File;
 
 /**
@@ -118,6 +120,14 @@ public class Trajectoire {
 	 */
 	public Trajectoire(double pas) {
 		this(new ArrayList<Point2D>(), pas);
+	}
+	/**
+	 * A modifier
+	 * Constructeur mettant le pas par default 
+	 * @param localisation
+	 */
+	public Trajectoire(List<Point2D> localisation) {
+		this(localisation, 0.1);
 	}
 	
 	/**
