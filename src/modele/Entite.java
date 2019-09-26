@@ -1,7 +1,5 @@
 package modele;
 
-import javafx.geometry.Point2D;
-
 public abstract class Entite {
 	protected Point position;
 	protected double masse;
@@ -48,11 +46,9 @@ public abstract class Entite {
 	public void setRayon(double rayon) {
 		this.rayon = rayon;
 	}
-
-	
+	/*
 	public double ecart(Point point) {
 		return position.distance(point);
 	}
-	
-	
+	*/
 }

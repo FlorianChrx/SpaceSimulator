@@ -5,7 +5,6 @@ public abstract class EntiteMobile extends Entite{
 	protected double vity;
 	protected Trajectoire trajectoire;
 	
-	
 	public EntiteMobile(Point position, double masse, double rayon, String name,double vitx,double vity,Trajectoire trajectoire) {
 		super(position, masse, rayon, name);
 		this.vitx=vitx;
@@ -30,5 +29,4 @@ public abstract class EntiteMobile extends Entite{
 	public void setTrajectoire(Trajectoire trajectoire) {
 		this.trajectoire = trajectoire;
 	}
-	
 }

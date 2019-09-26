@@ -7,5 +7,5 @@ package modele;
  *
  */
 public interface Calculator {
-	public void CalculNextStep();
+	public void CalculNextStep(EntiteMobile p);
 }
