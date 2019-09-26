@@ -107,4 +107,10 @@ public class Trajectoire {
 			throw new Exception("Fichier de configuration manquant");
 		}
 	}
+
+	public double getPas() {
+		return pas;
+	}
+	
+	
 }
