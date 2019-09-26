@@ -11,7 +11,7 @@ import java.io.File;
  * @Date 20/09/2019
  * @author CHIRAUX Florian
  *
- * Classe permettant de représenter une trajectoire: cette 
+ * Classe permettant de représenter une trajectoire: la succesion de point et ses vecteurs vitesse associés
  */
 public class Trajectoire {
 	/**
