@@ -2,8 +2,13 @@ package modele;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.geometry.Point2D;
+
+/**
+ * @Date 20/09/2019
+ * @author rossezr
+ * Class 
+ */
 
 public class SystemeSolaire {
 	

@@ -1,8 +1,13 @@
 package modele;
+/**
+ * @Date 20/09/2019
+ * @author lefrancn
+ * Class qui hérite de EntitéMobile étant la seule a avoir des méthode différente
+ */
 
 public class Vaisseau extends EntiteMobile {
-	protected double pPrincipale;
-	protected double pRetro;
+	protected double pPrincipale; // propulseur principale
+	protected double pRetro; // propulseur
 	
 	
 	public Vaisseau(Point position, double masse, double rayon, String name, double vitx, double vity,

@@ -1,5 +1,11 @@
 package modele;
 
+/**
+ * @Date 20/09/2019
+ * @author lefrancn
+ * Class qui hérite de Entité, pour les entités qui se déplace
+ */
+
 public class Vecteur {
 	protected double vitx;
 	protected double vity;

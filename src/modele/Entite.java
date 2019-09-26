@@ -1,19 +1,25 @@
 package modele;
 
-public abstract class Entite {
-	protected Point position;
-	protected double masse;
-	protected double rayon;
-	protected String name;
-	
-	
+/**
+ * @Date 20/09/2019
+ * @author lefrancn
+ * Class abstract créant une entiter
+ */
 
+public abstract class Entite {
+	protected Point position; // composé d'un x et d'un y
+	protected double masse; //en kg
+	protected double rayon; //en m
+	protected String name; // nom de l'entité
+	
+	
 	public Entite(Point position, double masse, double rayon, String name) {
 		this.position = position;
 		this.masse = masse;
 		this.rayon = rayon;
 		this.name = name;
 	}
+	
 	/**
 	 * renvoie la masse
 	 * @return renvoie la masse en double
@@ -29,6 +35,7 @@ public abstract class Entite {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+	
 	/**
 	 * renvoie le nom
 	 * @return renvoie le nom en String
@@ -36,6 +43,7 @@ public abstract class Entite {
 	public String getName() {
 		return name;
 	}
+	
 	/**
 	 * remplace le nom
 	 * @param name nouveau nom
@@ -43,6 +51,7 @@ public abstract class Entite {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	/**
 	 * remplace la masse
 	 * @param masse nouvelle masse
@@ -50,6 +59,7 @@ public abstract class Entite {
 	public void setMasse(double masse) {
 		this.masse = masse;
 	}
+	
 	/**
 	 * renvoie le rayon
 	 * @return renvoie le rayon en double
@@ -57,6 +67,7 @@ public abstract class Entite {
 	public double getRayon() {
 		return rayon;
 	}
+	
 	/**
 	 * remplace le rayon
 	 * @param rayon nouveau rayon
@@ -73,6 +84,10 @@ public abstract class Entite {
 		this.position = point;
 	}
 	
+	/**
+	 * @param point
+	 * @return la distance en double entre le point courant et celui passer en paramétre
+	 */
 	public double ecart(Point point) {
 		return position.distance(point);
 	}

@@ -4,7 +4,7 @@ package modele;
 /**
  * @Date 20/09/2019
  * @author carpentm
- *Class intérable 
+ * Class intérable 
  */
 
 public class SteppedCalculator implements Calculator{
@@ -38,12 +38,16 @@ public class SteppedCalculator implements Calculator{
 		return 0;
 	}
 	
+	/**
+	 * Permet de calculer la force gravitationnelle
+	 * @param vaisseau
+	 * @param entite
+	 * @return la force gravitationnelle
+	 */
 	public double ForceGravitationnel(Vaisseau vaisseau, Entite entite) {
 		double distance = vaisseau.getPoint().distance(entite.getPoint());
-		Vecteur vecteur = new Vecteur(vaisseau.getPoint().getX(), entite.getPoint().getX());
-		
-		return -this.G * ((vaisseau.masse * entite.masse) / Math.pow(distance, 2));
-		
+		//v�rifier sion laisse le -
+		return (- this.G * (( entite.masse * vaisseau.masse ) / Math.pow(distance, 2)));
 	}
 	
 	public void euleurExplicite() {
