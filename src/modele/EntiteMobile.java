@@ -1,11 +1,9 @@
 package modele;
 
-
 public abstract class EntiteMobile extends Entite{
 	protected double vitx;
 	protected double vity;
 	protected Trajectoire trajectoire;
-	
 	
 	public EntiteMobile(Point position, double masse, double rayon, String name,double vitx,double vity,Trajectoire trajectoire) {
 		super(position, masse, rayon, name);

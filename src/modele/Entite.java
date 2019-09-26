@@ -46,7 +46,7 @@ public abstract class Entite {
 	public void setRayon(double rayon) {
 		this.rayon = rayon;
 	}
-
+	
 	public Point getPoint() {
 		return position;
 	}
@@ -55,9 +55,7 @@ public abstract class Entite {
 		this.position = point;
 	}
 	
-	public double ecart(Entite e) {
-		return position.distance(e.getPoint());
+	public double ecart(Point point) {
+		return position.distance(point);
 	}
-	
-	
 }
