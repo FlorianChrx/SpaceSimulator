@@ -1,6 +1,5 @@
 package modele;
 
-import javafx.geometry.Point2D;
 
 /**
  * @Date 20/09/2019
@@ -18,7 +17,7 @@ public class SteppedCalculator implements Calculator{
 			double x = p.getTrajectoire().getLastPoint().getX() + p.getTrajectoire().getLastVitX()/p.getTrajectoire().getPas();
 			double y = p.getTrajectoire().getLastPoint().getY() + p.getTrajectoire().getLastVitY()/p.getTrajectoire().getPas();
 			
-			Point2D nouvePoint = new Point2D(x, y);
+			Point nouvePoint = new Point(x, y);
 			
 			p.setPoint(nouvePoint);
 			p.getTrajectoire().addLocalisation(nouvePoint);

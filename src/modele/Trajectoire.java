@@ -5,9 +5,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import javafx.geometry.Point2D;
-
 import java.io.File;
 
 /**
@@ -20,7 +17,7 @@ public class Trajectoire {
 	/**
 	 * Attributs representant la trajectoire à travers une succession de points
 	 */
-	protected List<Point2D> localisations;
+	protected List<Point> localisations;
 	protected List<Double> vitx;
 	protected List<Double> vity;
 	
@@ -33,7 +30,7 @@ public class Trajectoire {
 	 * permet d'ajouter un point à la trajectoire;
 	 * @param point
 	 */
-	public void addLocalisation(Point2D point) {
+	public void addLocalisation(Point point) {
 		localisations.add(point);
 	}
 	
@@ -41,7 +38,7 @@ public class Trajectoire {
 	 * permet d'obtenir le dernier point de la trajectoire;
 	 * @return
 	 */
-	public Point2D getLastPoint() {
+	public Point getLastPoint() {
 		return getPoint(localisations.size()-1);
 	}
 	
@@ -50,7 +47,7 @@ public class Trajectoire {
 	 * @param idx l'indice du point recherché
 	 * @return
 	 */
-	public Point2D getPoint(int idx) {
+	public Point getPoint(int idx) {
 		return localisations.get(idx);
 	}
 	
@@ -108,7 +105,7 @@ public class Trajectoire {
 	 * @param localisations
 	 * @param pas
 	 */
-	public Trajectoire(List<Point2D> localisations, double pas) {
+	public Trajectoire(List<Point> localisations, double pas) {
 		super();
 		this.localisations = localisations;
 		this.pas = pas;
@@ -119,14 +116,14 @@ public class Trajectoire {
 	 * @param pas
 	 */
 	public Trajectoire(double pas) {
-		this(new ArrayList<Point2D>(), pas);
+		this(new ArrayList<Point>(), pas);
 	}
 	/**
 	 * A modifier
 	 * Constructeur mettant le pas par default 
 	 * @param localisation
 	 */
-	public Trajectoire(List<Point2D> localisation) {
+	public Trajectoire(List<Point> localisation) {
 		this(localisation, 0.1);
 	}
 	
