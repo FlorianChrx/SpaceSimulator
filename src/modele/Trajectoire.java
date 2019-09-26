@@ -12,6 +12,8 @@ import java.io.File;
  * @author CHIRAUX Florian
  *
  * Classe permettant de représenter une trajectoire: la succesion de point et ses vecteurs vitesse associés
+ * ATTENTION: si vous utilisez les méthodes deprecated, utiliser uniquement cette partie car le nouveau fonctionnement 
+ * 			  est complètement dissocié
  */
 public class Trajectoire {
 	/**
