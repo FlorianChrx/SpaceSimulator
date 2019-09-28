@@ -1,5 +1,8 @@
 package modele;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class Vecteur {
 	protected double vitx;
 	protected double vity;
@@ -24,6 +27,22 @@ public class Vecteur {
 	
 	public void setVity(double vity) {
 		this.vity = vity;
+	}
+	
+	public static Vecteur somme(Vecteur v1, Vecteur v2) {
+		return new Vecteur(v1.getVitx()+v2.getVitx(), v1.getVity()+v2.getVity());
+	}
+	
+	public static Vecteur somme(Vecteur...vecteurs) {
+		return somme(Arrays.asList(vecteurs));
+	}
+	
+	public static Vecteur somme(List<Vecteur> vecteurs) {
+		Vecteur res = new Vecteur(0,0);
+		for (Vecteur vecteur : vecteurs) {
+			res = Vecteur.somme(res, vecteur);
+		}
+		return res;
 	}
 	
 }
