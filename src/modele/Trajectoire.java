@@ -3,7 +3,9 @@ package modele;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import java.io.File;
 
@@ -17,14 +19,30 @@ public class Trajectoire {
 	/**
 	 * Attributs representant la trajectoire Ã  travers une succession de points
 	 */
-	protected List<Point> localisations;
+	protected List<Point> localisationsPrevision;
 	protected List<Double> vitx;
 	protected List<Double> vity;
+	protected List<Vecteur> trajectoirePrevision;
+	protected List<Point> localisations;
+	protected List<Vecteur> trajectoire;
 	
 	/**
 	 * Attribut reprÃ©sentant le pas entre chaque calcul de point
 	 */
 	protected double pas;
+	
+	
+	//Constructeur mad'
+	public Trajectoire(Vaisseau v) {
+		this.localisations = new ArrayList<Point>();
+		this.trajectoire = new ArrayList<Vecteur>();
+		this.localisationsPrevision = new ArrayList<Point>();
+		this.trajectoirePrevision = new ArrayList<Vecteur>();
+		this.localisations.add(v.getPoint());//Point de départ du vaisseau
+		this.trajectoire.add(v.getVitesse());//Vitesse de départ du vaisseau
+		this.localisationsPrevision.add(v.getPoint());
+		this.trajectoirePrevision.add(v.getVitesse());
+	}
 	
 	/**
 	 * permet d'ajouter un point Ã  la trajectoire;
@@ -118,6 +136,7 @@ public class Trajectoire {
 	public Trajectoire(double pas) {
 		this(new ArrayList<Point>(), pas);
 	}
+	
 	/**
 	 * A modifier
 	 * Constructeur mettant le pas par default 
@@ -146,6 +165,15 @@ public class Trajectoire {
 	public double getPas() {
 		return pas;
 	}
+
+	public void addVitX(double vitx) {
+		this.vitx.add(vitx);
+	}
+	
+	public void addVitY(double vity) {
+		this.vity.add(vity);
+	}
+	
 	
 	
 }

@@ -1,5 +1,7 @@
 package modele;
 
+import java.util.List;
+
 /**
  * 20/09/2019
  * @author carpentm
@@ -7,5 +9,5 @@ package modele;
  *
  */
 public interface Calculator {
-	public void CalculNextStep(EntiteMobile p);
+	public void CalculNextStep(List<EntiteMobile> list);
 }

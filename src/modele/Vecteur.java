@@ -7,29 +7,34 @@ package modele;
  */
 
 public class Vecteur {
-	protected double vitx;
-	protected double vity;
+	protected double vectx;
+	protected double vecty;
 	
 	public Vecteur(double vitx, double vity) {
 		super();
-		this.vitx = vitx;
-		this.vity = vity;
+		this.vectx = vitx;
+		this.vecty = vity;
 	}
 	
 	public double getVitx() {
-		return vitx;
+		return vectx;
 	}
 	
 	public void setVitx(double vitx) {
-		this.vitx = vitx;
+		this.vectx = vitx;
 	}
 	
 	public double getVity() {
-		return vity;
+		return vecty;
 	}
 	
 	public void setVity(double vity) {
-		this.vity = vity;
+		this.vecty = vity;
+	}
+	
+	//Si jamais on decide d'avoir une vitesse variable
+	public Vecteur calculeDuVecteur(double valeur) {
+		return this;
 	}
 	
 }

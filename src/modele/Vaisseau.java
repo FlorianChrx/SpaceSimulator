@@ -10,9 +10,9 @@ public class Vaisseau extends EntiteMobile {
 	protected double pRetro; // propulseur
 	
 	
-	public Vaisseau(Point position, double masse, double rayon, String name, double vitx, double vity,
+	public Vaisseau(Point positionInitial, double masse, double rayon, String name, Vecteur vitesseInitial,
 			Trajectoire trajectoire,double pPrincipale,double pRetro) {
-		super(position, masse, rayon, name, vitx, vity, trajectoire);
+		super(positionInitial, masse, rayon, name, vitesseInitial, trajectoire);
 		this.pPrincipale=pPrincipale;
 		this.pRetro=pRetro;
 	}

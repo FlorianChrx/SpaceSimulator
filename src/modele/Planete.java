@@ -7,9 +7,9 @@ package modele;
  */
 public class Planete extends EntiteMobile{
 
-	public Planete(Point position, double masse, double rayon, String name, double vitx, double vity,
+	public Planete(Point position, double masse, double rayon, String name, Vecteur vitesse,
 			Trajectoire trajectoire) {
-		super(position, masse, rayon, name, vitx, vity, trajectoire);
+		super(position, masse, rayon, name, vitesse, trajectoire);
 	}
 
 }
