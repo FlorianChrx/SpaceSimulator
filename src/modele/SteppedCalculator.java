@@ -49,16 +49,17 @@ public class SteppedCalculator implements Calculator {
 	}
 	
 	//Attention il ne fait que calculer une trajectoire approximative en fonction des coordonn� de d�part
-	//Voir si ont doit faire les tangentes au vecteurs pour faire la direction
 	//met a jour la vitesse du vaisseau et ses coordonn�
 	//Permet "d'avoir" et de mettre a jour point et vitesse suivante pour le vaisseau mais ne prend pas en compte les autres astres du systeme ni la force gravitationelle(evident ?)
 	//Pour simplifier le code et avancer pour l'instant la vitesse seras une constante
 	public void euleurExplicite(double tDebut, double tFin, EntiteMobile mobile) {
-		
+		System.out.println("test1");
 		double nouvoPointX = mobile.getVitesse().getVitx() + mobile.getPoint().getX();
 		double nouvoPointY = mobile.getVitesse().getVity() + mobile.getPoint().getY();
+		System.out.println("test 2");
 		Point nouvoPoint = new Point(nouvoPointX, nouvoPointY);
 		mobile.setPoint(nouvoPoint);
+		System.out.println(mobile.getPosition().getX() + "  " + mobile.getPosition().getY());
 		mobile.getTrajectoire().localisations.add(nouvoPoint);
 		
 		mobile.getTrajectoire().addVector(mobile.getVitesse());
