@@ -12,7 +12,7 @@ public class SteppedCalculator implements Calculator {
 	//Les attributs
 	protected final double G = 6.67408 * Math.pow(10, -10);//Constante gravitationnelle en m3.kg^-1.s^-1;
 
-	//Les méthodes
+	//Les mï¿½thodes
 	
 	/**
 	 * Bonne question
@@ -24,9 +24,9 @@ public class SteppedCalculator implements Calculator {
 			double y = entiteMobile.getTrajectoire().getPoint(idxStep).getY() + entiteMobile.getTrajectoire().getVitY(idxStep)/entiteMobile.getTrajectoire().getPas();
 			
 			Point nouvePoint = new Point(x, y);
+			Vecteur nouveVecteur = new Vecteur(0,0);
 			entiteMobile.getTrajectoire().addLocalisation(nouvePoint);
-			entiteMobile.getTrajectoire().addVitX(0.00);
-			entiteMobile.getTrajectoire().addVitY(0.00);
+			entiteMobile.getTrajectoire().addVector(nouveVecteur);
 		}	
 		*/
 	}
@@ -40,44 +40,44 @@ public class SteppedCalculator implements Calculator {
 	 * @param vaisseau
 	 * @param entite
 	 * @return la force gravitationnelle
-	 * Où l'utiliser dans les calcules ?
+	 * Oï¿½ l'utiliser dans les calcules ?
 	 */
-	public double ForceGravitationnel(Vaisseau vaisseau, Entite entite) {
-		double distance = vaisseau.getPoint().distance(entite.getPoint());
-		//vérifier sion laisse le -
-		return (this.G * (( entite.masse * vaisseau.masse ) / Math.pow(distance, 2)));
+	public double ForceGravitationnel(EntiteMobile mobile, Entite entite) {
+		double distance = mobile.getPoint().distance(entite.getPoint());
+		//vï¿½rifier sion laisse le -
+		return this.G * (( entite.masse * mobile.masse ) / Math.pow(distance, 2));
 	}
 	
-	//Attention il ne fait que calculer une trajectoire approximative en fonction des coordonné de départ
+	//Attention il ne fait que calculer une trajectoire approximative en fonction des coordonnï¿½ de dï¿½part
 	//Voir si ont doit faire les tangentes au vecteurs pour faire la direction
-	//met a jour la vitesse du vaisseau et ses coordonné
+	//met a jour la vitesse du vaisseau et ses coordonnï¿½
 	//Permet "d'avoir" et de mettre a jour point et vitesse suivante pour le vaisseau mais ne prend pas en compte les autres astres du systeme ni la force gravitationelle(evident ?)
 	//Pour simplifier le code et avancer pour l'instant la vitesse seras une constante
-	public void euleurExplicite(double tDebut, double tFin, Vaisseau vaisseau, Trajectoire traj) {
+	public void euleurExplicite(double tDebut, double tFin, EntiteMobile mobile) {
 		
-		double nouvoPointX = vaisseau.getVitesse().getVitx() + vaisseau.getPoint().getX();
-		double nouvoPointY = vaisseau.getVitesse().getVity() + vaisseau.getPoint().getY();
+		double nouvoPointX = mobile.getVitesse().getVitx() + mobile.getPoint().getX();
+		double nouvoPointY = mobile.getVitesse().getVity() + mobile.getPoint().getY();
 		Point nouvoPoint = new Point(nouvoPointX, nouvoPointY);
-		vaisseau.setPoint(nouvoPoint);
-		traj.localisations.add(nouvoPoint);
+		mobile.setPoint(nouvoPoint);
+		mobile.getTrajectoire().localisations.add(nouvoPoint);
 		
-		traj.trajectoire.add(vaisseau.getVitesse());
+		mobile.getTrajectoire().addVector(mobile.getVitesse());
 	}
 	
-	//Permet d'avoir le chemin prés calculer
+	//Permet d'avoir le chemin prï¿½s calculer
 	//Pour simplifier le code et avancer pour l'instant la vitesse seras une constante
-	public void CalculeTrajectoire(double tDebut, double tFin, Vaisseau vaisseau, Trajectoire traj) {
+	public void CalculeTrajectoire(double tDebut, double tFin, EntiteMobile mobile) {
 		double t = tDebut;
 		for(int i = 1; i < (int)tFin+1; i ++) {
-			t += traj.getPas();
+			t += mobile.getTrajectoire().getPas();
 			
-			double pointX = traj.localisationsPrevision.get(i - 1).getX() + traj.trajectoirePrevision.get(i - 1).getVitx();
-			double pointY = traj.localisationsPrevision.get(i - 1).getY() + traj.trajectoirePrevision.get(i - 1).getVity();
-			Point point = new Point(pointX, pointY);
-			traj.localisationsPrevision.add(point);
+			double point1 = mobile.getTrajectoire().getVecteur(i-1).getVitx() + mobile.getTrajectoire().getPoint(i-1).getX();
+			double point2 = mobile.getTrajectoire().getVecteur(i-1).getVity() + mobile.getTrajectoire().getPoint(i-1).getY();
+			Point point = new Point(point1, point2);
+			mobile.getTrajectoire().localisations.add(point);
 			
-			traj.trajectoirePrevision.add(vaisseau.getVitesse());
-			//traj.trajectoire.add(vaisseau.getVitesse().calculeDuVecteur(t)); Si la vitesse n'est plus une constante décommenter
+			mobile.getTrajectoire().vecteurs.add(mobile.getVitesse());
+			//traj.trajectoire.add(vaisseau.getVitesse().calculeDuVecteur(t)); Si la vitesse n'est plus une constante dï¿½commenter
 		}
 	}
 	

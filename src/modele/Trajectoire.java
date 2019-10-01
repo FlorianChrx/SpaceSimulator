@@ -3,9 +3,7 @@ package modele;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.io.File;
 
@@ -13,36 +11,34 @@ import java.io.File;
  * @Date 20/09/2019
  * @author CHIRAUX Florian
  *
- * Classe permettant de représenter une trajectoire: cette 
+ * Classe permettant de représenter une trajectoire: la succesion de point et ses vecteurs vitesse associés
+ * ATTENTION: si vous utilisez les méthodes deprecated, utiliser uniquement cette partie car le nouveau fonctionnement 
+ * 			  est complètement dissocié
  */
 public class Trajectoire {
 	/**
-	 * Attributs representant la trajectoire à travers une succession de points
+	 * Attribut representant la trajectoire à travers une succession de points
 	 */
-	protected List<Point> localisationsPrevision;
-	protected List<Double> vitx;
-	protected List<Double> vity;
-	protected List<Vecteur> trajectoirePrevision;
 	protected List<Point> localisations;
-	protected List<Vecteur> trajectoire;
+	/**
+	 * Attribut représentant la liste des vecteurs liés aux points de la trajectoire
+	 */
+	protected List<Vecteur> vecteurs;
+	/**
+	 * Ancien attribut de vecteur vitesse, voué à disparaître
+	 */
+	@Deprecated
+	protected List<Double> vitx;
+	/**
+	 * Ancien attribut de vecteur vitesse, voué à disparaître
+	 */
+	@Deprecated
+	protected List<Double> vity;
 	
 	/**
 	 * Attribut représentant le pas entre chaque calcul de point
 	 */
 	protected double pas;
-	
-	
-	//Constructeur mad'
-	public Trajectoire(Vaisseau v) {
-		this.localisations = new ArrayList<Point>();
-		this.trajectoire = new ArrayList<Vecteur>();
-		this.localisationsPrevision = new ArrayList<Point>();
-		this.trajectoirePrevision = new ArrayList<Vecteur>();
-		this.localisations.add(v.getPoint());//Point de d�part du vaisseau
-		this.trajectoire.add(v.getVitesse());//Vitesse de d�part du vaisseau
-		this.localisationsPrevision.add(v.getPoint());
-		this.trajectoirePrevision.add(v.getVitesse());
-	}
 	
 	/**
 	 * permet d'ajouter un point à la trajectoire;
@@ -69,18 +65,55 @@ public class Trajectoire {
 		return localisations.get(idx);
 	}
 	
+	/**
+	 * Méthode d'accès à un vecteur de la trajectoire à l'indice donné
+	 * @param idx l'index du vecteur dans la trajectoire
+	 * @return Le vecteur à cette position de la trajectoire
+	 */
+	public Vecteur getVecteur(int idx) {
+		return vecteurs.get(idx);
+	}
+	
+	/**
+	 * Méthode d'accès au dernier vecteur de la trajectoire
+	 * @return le dernier vecteur de la trajectoire
+	 */
+	public Vecteur getLastVecteur() {
+		return getVecteur(vecteurs.size()-1);
+	}
+	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (x)
+	 */
+	@Deprecated
 	public double getLastVitX() {
 		return getVitX(vitx.size()-1);
 	}
 	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (x)
+	 */
+	@Deprecated
 	public double getVitX(int idx) {
 		return vitx.get(idx);
 	}
-		
+	
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (y)
+	 */
+	@Deprecated	
     public double getLastVitY() {
     	return getVitY(vity.size()-1);
 	}
-    
+
+	/**
+	 * Ancien getter de coordonnée de vecteur, voué à disparaître
+	 * @return une coordonnée de vecteur (y)
+	 */
+	@Deprecated
     public double getVitY(int idx) {
     	return vity.get(idx);
 	}
@@ -161,19 +194,36 @@ public class Trajectoire {
 			throw new Exception("Fichier de configuration manquant");
 		}
 	}
-
+	
+	/**
+	 * Fonction permettant d'obtenir le pas actuel de cette trajectoire
+	 * @return un double représentant le pas de la trajectoire (le temps qui s'écoule entre 2 points)
+	 */
 	public double getPas() {
 		return pas;
 	}
+	
+	public void addVector(Vecteur v) {
+		vecteurs.add(v);
+	}
 
+	/**
+	 * Ancienne méthode permettant d'ajouter une coordonée de vecteur
+	 * @param vitx
+	 */
+	@Deprecated
 	public void addVitX(double vitx) {
 		this.vitx.add(vitx);
 	}
 	
+	/**
+	 * Ancienne méthode permettant d'ajouter une coordonée de vecteur
+	 * @param vity
+	 */
+	@Deprecated
 	public void addVitY(double vity) {
 		this.vity.add(vity);
 	}
-	
 	
 	
 }
