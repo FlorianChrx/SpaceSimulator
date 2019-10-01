@@ -14,7 +14,8 @@ public class SystemeSolaire {
 	protected List<EntiteMobile> entityList = new ArrayList<EntiteMobile>();
 	protected Calculator calcul = new SteppedCalculator();
 	protected Point entityCenter = new Point(0,0);
-
+	
+	
 	public Point getEntityCenter() {
 		return entityCenter;
 	}
