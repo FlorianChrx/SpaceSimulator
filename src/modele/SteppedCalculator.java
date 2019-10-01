@@ -42,10 +42,26 @@ public class SteppedCalculator implements Calculator {
 	 * @return la force gravitationnelle
 	 * O� l'utiliser dans les calcules ?
 	 */
-	public double ForceGravitationnel(EntiteMobile mobile, Entite entite) {
+	public double normeForceGravitationnel(Entite mobile, Entite entite) {
 		double distance = mobile.getPoint().distance(entite.getPoint());
 		//v�rifier sion laisse le -
 		return this.G * (( entite.masse * mobile.masse ) / Math.pow(distance, 2));
+	}
+	
+	public Vecteur forceBetween(Entite mobile, Entite entite) {
+		Vecteur vector = Vecteur.buildVector(mobile.getPosition(), entite.getPosition());
+		vector.changeNorme(normeForceGravitationnel(mobile, entite));
+		return vector;
+	}
+	
+	public Vecteur forceSystem(List<Entite> entites, Entite entiteSelected) {
+		Vecteur res = new Vecteur(0, 0);
+		for (Entite entite : entites) {
+			if(!entite.equals(entiteSelected)) {
+				res = Vecteur.somme(res, forceBetween(entite, entiteSelected));
+			};
+		}
+		return res;
 	}
 	
 	//Attention il ne fait que calculer une trajectoire approximative en fonction des coordonn� de d�part
