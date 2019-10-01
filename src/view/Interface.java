@@ -19,7 +19,7 @@ import modele.Planete;
 public class Interface {
 
 	public Interface(Stage stage,MainController m) {
-		HBox h = new HBox();
+		HBox h = new HBox(); 
 		Planete affiche = m.getPlaneteTest();
 		HBox slider = new HBox();
 		VBox menu = new VBox();
