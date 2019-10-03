@@ -20,7 +20,7 @@ public class Interface {
 
 	public Interface(Stage stage,MainController m) {
 		HBox h = new HBox(); 
-		Planete affiche = m.getPlaneteTest();
+		
 		HBox slider = new HBox();
 		VBox menu = new VBox();
 		Slider pas = initSlider(0.5,50,25,Orientation.VERTICAL);
@@ -30,7 +30,6 @@ public class Interface {
 		GraphicsContext gc = c.getGraphicsContext2D();
 		Button b = new Button("Valider");
 		menu.getChildren().addAll(slider,b);
-		drawPlanete(gc,affiche);
 		h.getChildren().addAll(c,menu);
 		Scene sc = new Scene(h,600,500);
 		stage.setScene(sc);

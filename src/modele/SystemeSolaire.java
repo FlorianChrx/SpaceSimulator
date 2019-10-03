@@ -11,16 +11,22 @@ import java.util.List;
 
 public class SystemeSolaire {
 	
-	protected List<EntiteMobile> entityList = new ArrayList<EntiteMobile>();
-	protected Calculator calcul = new SteppedCalculator();
-	protected Point entityCenter = new Point(0,0);
+	protected List<EntiteMobile> entityList;
+	protected Calculator calcul;
+	protected Entite entityCenter;
 	
 	
-	public Point getEntityCenter() {
-		return entityCenter;
+	public SystemeSolaire() {
+		entityList=new ArrayList<EntiteMobile>();
+		calcul = new SteppedCalculator();
+		entityCenter = new Etoile(new Point(0,0),20,20,"Soleil");
+	}
+	
+	public Etoile getEntityCenter() {
+		return (Etoile)entityCenter;
 	}
 
-	public void setEntityCenter(Point entityCenter) {
+	public void setEntityCenter(Etoile entityCenter) {
 		this.entityCenter = entityCenter;
 	}
 
@@ -30,6 +36,10 @@ public class SystemeSolaire {
 
 	public void setEntityList(List<EntiteMobile> entityList) {
 		this.entityList = entityList;
+	}
+	
+	public void addEntity(EntiteMobile em) {
+		entityList.add(em);
 	}
 
 	public Calculator getCalcul() {
