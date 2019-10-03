@@ -1,6 +1,6 @@
 package controller;
 
-import modele.EntiteMobile;
+import javafx.scene.control.Slider;
 import modele.Planete;
 import modele.Point;
 import modele.SystemeSolaire;
@@ -20,5 +20,23 @@ public class MainController {
 		return sysol;
 	}
 	
+	public void setOnSliderPas(Slider s) {
+		s.valueProperty().addListener(e->{
+			changePas(s.getValue());
+		});
+	}
 	
+	public void setOnSliderRalenti(Slider s) {
+		s.valueProperty().addListener(e->{
+			changeRalenti(s.getValue());
+		});
+	}
+	
+	public void changePas (double newPas) {
+		sysol.setAllPas(newPas);
+	}
+	
+	public void changeRalenti(double newRalenti) {
+		
+	}
 }

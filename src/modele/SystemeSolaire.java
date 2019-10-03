@@ -45,8 +45,20 @@ public class SystemeSolaire {
 	public Calculator getCalcul() {
 		return calcul;
 	}
-
 	
+	public EntiteMobile getEntity (int index) {
+		return this.entityList.get(index);
+	}
+
+	public void setAllPas(double pas) {
+		for(EntiteMobile em : this.entityList) {
+			em.setPas(pas);
+		}
+	}
+	
+	public void setPas(double pas ,int index) {
+		getEntity(index).setPas(pas);
+	}
 	
 	
 }
