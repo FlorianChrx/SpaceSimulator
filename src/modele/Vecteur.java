@@ -3,41 +3,30 @@ package modele;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * @Date 20/09/2019
- * @author lefrancn
- * Class qui h�rite de Entit�, pour les entit�s qui se d�place
- */
-
 public class Vecteur {
-	protected double vectx;
-	protected double vecty;
+	protected double vitx;
+	protected double vity;
 	
 	public Vecteur(double vitx, double vity) {
 		super();
-		this.vectx = vitx;
-		this.vecty = vity;
+		this.vitx = vitx;
+		this.vity = vity;
 	}
 	
 	public double getVitx() {
-		return vectx;
+		return vitx;
 	}
 	
 	public void setVitx(double vitx) {
-		this.vectx = vitx;
+		this.vitx = vitx;
 	}
 	
 	public double getVity() {
-		return vecty;
+		return vity;
 	}
 	
 	public void setVity(double vity) {
-		this.vecty = vity;
-	}
-	
-	//Si jamais on decide d'avoir une vitesse variable
-	public Vecteur calculeDuVecteur(double valeur) {
-		return this;
+		this.vity = vity;
 	}
 	
 	public static Vecteur somme(Vecteur v1, Vecteur v2) {
@@ -54,6 +43,20 @@ public class Vecteur {
 			res = Vecteur.somme(res, vecteur);
 		}
 		return res;
+	}
+	
+	public static Vecteur buildVector(Point p1, Point p2) {
+		return new Vecteur(p2.getX()-p1.getX(), p2.getY()-p1.getY());
+	}
+	
+	public double getNorme() {
+		return Math.sqrt(vitx*vitx+vity*vity);
+	}
+
+	public void changeNorme(double norme) {
+		double ratio = norme / getNorme();
+		vitx *= ratio;
+		vity *= ratio;
 	}
 	
 }

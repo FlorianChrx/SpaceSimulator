@@ -3,7 +3,7 @@ package modele;
 /**
  * @Date 26/09/2019
  * @author lefrancn
- * Class qui hérite de Entité, pour les entités qui se déplace
+ * Class qui hï¿½rite de Entitï¿½, pour les entitï¿½s qui se dï¿½place
  */
 
 public abstract class EntiteMobile extends Entite{
@@ -14,6 +14,8 @@ public abstract class EntiteMobile extends Entite{
 		super(position, masse, rayon, name);
 		this.vitesse = vitesse;
 		this.trajectoire = trajectoire;
+		this.trajectoire.addLocalisation(position);
+		this.trajectoire.addVector(vitesse);
 	}
 	
 	public Trajectoire getTrajectoire() {
