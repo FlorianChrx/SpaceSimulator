@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface Calculator {
 	public void CalculNextStep(List<EntiteMobile> list);
+	public void euleurExplicite(double tDebut, double tFin, EntiteMobile mobile);
 }

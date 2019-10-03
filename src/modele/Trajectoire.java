@@ -156,10 +156,11 @@ public class Trajectoire {
 	 * @param localisations
 	 * @param pas
 	 */
-	public Trajectoire(List<Point> localisations, double pas) {
+	public Trajectoire(List<Point> localisations, List<Vecteur> vecteur, double pas) {
 		super();
 		this.localisations = localisations;
 		this.pas = pas;
+		this.vecteurs = vecteur;
 	}
 	
 	/**
@@ -167,7 +168,7 @@ public class Trajectoire {
 	 * @param pas
 	 */
 	public Trajectoire(double pas) {
-		this(new ArrayList<Point>(), pas);
+		this(new ArrayList<Point>(), new ArrayList<Vecteur>(), pas);
 	}
 	
 	/**
@@ -175,8 +176,8 @@ public class Trajectoire {
 	 * Constructeur mettant le pas par default 
 	 * @param localisation
 	 */
-	public Trajectoire(List<Point> localisation) {
-		this(localisation, 0.1);
+	public Trajectoire(List<Point> localisation, List<Vecteur> vecteur) {
+		this(localisation, vecteur,  0.1);
 	}
 	
 	/**
