@@ -11,6 +11,7 @@ public class CalculService extends Service<Void> {
 	
 	protected List<EntiteMobile> list;
 	protected Calculator calculator;
+	protected int ralentissement;
 	
 	public CalculService(List<EntiteMobile> list, Calculator calculator) {
 		super();
@@ -20,7 +21,24 @@ public class CalculService extends Service<Void> {
 
 	@Override
 	protected Task<Void> createTask() {
-		return new CalculTask(null, null);
+		return new CalculTask();
+	}
+	
+	public class CalculTask extends Task<Void> {
+		@Override
+		protected Void call() throws Exception {
+			calculator.CalculNextStep(list);
+			Thread.sleep(ralentissement);
+			return null;
+		}
 	}
 
+	public int getRalentissement() {
+		return ralentissement;
+	}
+
+	public void setRalentissement(int ralentissement) {
+		this.ralentissement = ralentissement;
+	}
+	
 }

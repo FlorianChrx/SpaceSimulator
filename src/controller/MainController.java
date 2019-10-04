@@ -1,9 +1,7 @@
 package controller;
 
-import modele.EntiteMobile;
 import modele.Planete;
 import modele.Point;
-import modele.SystemeSolaire;
 import modele.Trajectoire;
 import modele.Vecteur;
 
