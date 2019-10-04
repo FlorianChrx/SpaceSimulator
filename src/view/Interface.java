@@ -1,7 +1,11 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import controller.MainController;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,6 +22,7 @@ import modele.Etoile;
 public class Interface {
 
 	public Interface(Stage stage,MainController m) {
+		List<Node> SystemeList = new ArrayList<Node>();
 		HBox h = new HBox(); 
 		int len = m.getSysol().getEntityList().size();
 		HBox slider = new HBox();
@@ -27,11 +32,13 @@ public class Interface {
 		slider.getChildren().addAll(pas,ralenti);
 		Canvas c = new Canvas(500,500);
 		GraphicsContext gc = c.getGraphicsContext2D();
+		changerBakcgroundColorCanvas(c, gc);
 		for(int i = 0;i<len;i++) {drawEntite(gc ,m.getSysol().getEntityList().get(i),c);}
 		m.setOnSliderPas(pas);
 		m.setOnSliderRalenti(ralenti);
 		drawEntite(gc , m.getSysol().getEntityCenter(),c);
 		Button b = new Button("Valider");
+		//m.setOnButton(b, SystemeList.get(0));
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
 		Scene sc = new Scene(h,600,500);
@@ -46,7 +53,7 @@ public class Interface {
         if(p instanceof Etoile) {
         	gc.setFill(Color.YELLOW);
         }else{
-        	gc.setFill(Color.BLACK);
+        	gc.setFill(Color.WHITE);
         }
         
         gc.fillOval(p.getPoint().getX()+(c.getWidth()/2),p.getPoint().getY()+(c.getHeight()/2),p.getRayon(),p.getRayon());
@@ -62,4 +69,12 @@ public class Interface {
 		res.setOrientation(o);
 		return res;
 	}
+	
+	
+	private void changerBakcgroundColorCanvas (Canvas c, GraphicsContext gc) {
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
+	}
+	
+	
 }
