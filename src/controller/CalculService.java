@@ -13,6 +13,10 @@ public class CalculService extends Service<Void> {
 	protected Calculator calculator;
 	protected int ralentissement;
 	
+	/**
+	 * @param list
+	 * @param calculator
+	 */
 	public CalculService(List<EntiteMobile> list, Calculator calculator) {
 		super();
 		this.list = list;
