@@ -1,7 +1,12 @@
 package controller;
 
+
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import modele.Planete;
 import modele.Point;
+import modele.SystemeSolaire;
 import modele.Trajectoire;
 import modele.Vecteur;
 
@@ -18,5 +23,31 @@ public class MainController {
 		return sysol;
 	}
 	
+	public void setOnSliderPas(Slider s) {
+		s.valueProperty().addListener(e->{
+			changePas(s.getValue());
+		});
+	}
 	
+	public void setOnSliderRalenti(Slider s) {
+		s.valueProperty().addListener(e->{
+			changeRalenti(s.getValue());
+		});
+	}
+	
+	public void changePas (double newPas) {
+		sysol.setAllPas(newPas);
+	}
+	
+	public void changeRalenti(double newRalenti) {
+		
+	}
+	
+	public void setOnButton(Button b,Node rectPath) {
+		b.setOnAction(e->{
+			
+		});
+	}
+	
+
 }

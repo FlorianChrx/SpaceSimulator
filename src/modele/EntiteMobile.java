@@ -34,5 +34,8 @@ public abstract class EntiteMobile extends Entite{
 		this.vitesse = vitesse;
 	}
 	
+	public void setPas(double pas) {
+		trajectoire.setPas(pas);
+	}
 	
 }

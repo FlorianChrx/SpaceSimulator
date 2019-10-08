@@ -1,26 +1,26 @@
 package view;
 
+
 import controller.MainController;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 import javafx.stage.Stage;
-import modele.Planete;
+import modele.Entite;
+import modele.Etoile;
 
 
 public class Interface {
 
 	public Interface(Stage stage,MainController m) {
 		HBox h = new HBox(); 
-		
+		int len = m.getSysol().getEntityList().size();
 		HBox slider = new HBox();
 		VBox menu = new VBox();
 		Slider pas = initSlider(0.5,50,25,Orientation.VERTICAL);
@@ -28,6 +28,11 @@ public class Interface {
 		slider.getChildren().addAll(pas,ralenti);
 		Canvas c = new Canvas(500,500);
 		GraphicsContext gc = c.getGraphicsContext2D();
+		changerBakcgroundColorCanvas(c, gc);
+		for(int i = 0;i<len;i++) {drawEntite(gc ,m.getSysol().getEntityList().get(i),c);}
+		m.setOnSliderPas(pas);
+		m.setOnSliderRalenti(ralenti);
+		drawEntite(gc , m.getSysol().getEntityCenter(),c);
 		Button b = new Button("Valider");
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
@@ -38,9 +43,15 @@ public class Interface {
 		stage.show();
 	}
 	
-	private void drawPlanete(GraphicsContext gc,Planete p) {
-        gc.setFill(Color.BLACK);
-        gc.fillOval(p.getPoint().getX(),p.getPoint().getY(),p.getRayon(),p.getRayon());
+	private void drawEntite(GraphicsContext gc,Entite p,Canvas c) {
+        
+        if(p instanceof Etoile) {
+        	gc.setFill(Color.YELLOW);
+        }else{
+        	gc.setFill(Color.WHITE);
+        }
+        
+        gc.fillOval(p.getPoint().getX()+(c.getWidth()/2),p.getPoint().getY()+(c.getHeight()/2),p.getRayon(),p.getRayon());
     }
 	
 	private Slider initSlider(double min,double max,double valInit,Orientation o) {
@@ -53,4 +64,12 @@ public class Interface {
 		res.setOrientation(o);
 		return res;
 	}
+	
+	
+	private void changerBakcgroundColorCanvas (Canvas c, GraphicsContext gc) {
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
+	}
+	
+	
 }

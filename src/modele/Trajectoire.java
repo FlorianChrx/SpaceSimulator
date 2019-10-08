@@ -184,6 +184,10 @@ public class Trajectoire {
 		return pas;
 	}
 	
+	public void setPas(double pas) {
+		this.pas=pas;
+	}
+	
 	public void addVector(Vecteur v) {
 		vecteurs.add(v);
 	}

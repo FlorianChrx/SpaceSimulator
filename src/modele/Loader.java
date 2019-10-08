@@ -38,26 +38,37 @@ public class Loader {
 					res.addEntity(parseSimule(tab, tab2, dt));
 				break;
 				case "Vaisseau":
-					
+					res.addVaisseau(parseVaisseau(tab, tab2, dt));
+				break;
 				} 
 			}else if (s.substring(0,6).equals("PARAMS")) {
+				
 			}
 		}
 		return res;
 	}
-	private static Planete parseSimule(String[] tab, String[] tab2,double dt) {
-		return new Planete(new Point(Double.parseDouble(tab2[1].split("=")[1]),
-				Double.parseDouble(tab2[2].split("=")[1])),
-		Double.parseDouble(tab2[0]),20,tab[0],
-		new Vecteur(Double.parseDouble(tab2[3].split("=")[1]),
-				Double.parseDouble(tab2[4].split("=")[1])),
-		new Trajectoire(dt));
+
+	private static Planete parseSimule(String[] tab, String[] tab2, double dt) {
+		return new Planete(
+				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
+				Double.parseDouble(tab2[1]), 20, tab[0],
+				new Vecteur(Double.parseDouble(tab2[4].split("=")[1]), Double.parseDouble(tab2[5].split("=")[1])),
+				new Trajectoire(dt));
+	}
+
+	private static Vaisseau parseVaisseau(String[] tab, String[] tab2, double dt) {
+		return new Vaisseau(
+				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
+				Double.parseDouble(tab2[1].split("=")[1]), 10, tab[0],
+				new Vecteur(Double.parseDouble(tab2[4].split("=")[1]), Double.parseDouble(tab2[5].split("=")[1])),
+				new Trajectoire(dt), Double.parseDouble(tab2[6].split("=")[1]),
+				Double.parseDouble(tab2[7].split("=")[1]));
 	}
 
 	private static Etoile parseFixe(String[] tab, String[] tab2) {
 		return new Etoile(
-				new Point(Double.parseDouble(tab2[1].split("=")[1]), Double.parseDouble(tab2[2].split("=")[1])),
-				Double.parseDouble(tab2[0]), 40, tab[0]);
+				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
+				Double.parseDouble(tab2[1]), 40, tab[0]);
 	}
-	
+
 }
