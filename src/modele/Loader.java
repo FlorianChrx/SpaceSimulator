@@ -1,50 +1,61 @@
 package modele;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Loader {
 
-	public static SystemeSolaire charger() throws IOException {
+	public static SystemeSolaire charger() throws IOException, PropertiesException {
 		List<String> tmp = new ArrayList<String>();
-		
-			BufferedReader buff = new BufferedReader(new FileReader("ressource/A TROUVER"));
-			String ligne;
-			while ((ligne = buff.readLine()) != null) {
-				tmp.add(ligne);
-			}
-			buff.close();
-			SystemeSolaire res = new SystemeSolaire();
-			double g = 0.01;
-			double dt = 0.025;
-			double fa = 1;
-		for(int i=0;i<tmp.size();++i){			
+
+		BufferedReader buff = new BufferedReader(new FileReader("ressource/A TROUVER"));
+		String ligne;
+		while ((ligne = buff.readLine()) != null) {
+			tmp.add(ligne);
+		}
+		buff.close();
+		SystemeSolaire res = new SystemeSolaire();
+		Double g=null;
+		Double dt = null;
+		Double fa=null;
+		Double rayon=null;
+		for (int i = 0; i < tmp.size(); ++i) {
 			String s = tmp.get(i);
-			if(s.charAt(0)!='#' || s.substring(0,6).equals("PARAMS")) {
+			if (s.charAt(0) != '#' && !s.substring(0, 6).equals("PARAMS")) {
+				if (dt == null || g==null  || fa==null ||rayon==null) {	
+					throw new PropertiesException();
+				}
 				String[] tab = s.split(": ");
 				String[] tab2 = tab[1].split(" ");
 				switch (tab2[0]) {
 				case "Fixe":
 					res.setEntityCenter(parseFixe(tab, tab2));
-				break;
+					break;
 				case "Simulé":
 					res.addEntity(parseSimule(tab, tab2, dt));
-				break;
+					break;
 				case "Vaisseau":
 					res.addVaisseau(parseVaisseau(tab, tab2, dt));
-				break;
-				} 
-			}else if (s.substring(0,6).equals("PARAMS")) {
-				
+					break;
+				}
+			} else if (s.substring(0, 6).equals("PARAMS")) {
+				String[] tab = s.split(" ");
+				g = Double.parseDouble(tab[1].split("=")[1]);
+				fa = Double.parseDouble(tab[3].split("=")[1]);
+				dt = Double.parseDouble(tab[2].split("=")[1]);
+				rayon = Double.parseDouble(tab[4].split("=")[1]);
 			}
 		}
+		if (dt == null || g==null  || fa==null ||rayon==null) {	
+			throw new PropertiesException();
+		}
+		res.setG(g);
+		res.setRayon(rayon);
+		res.setFa(fa);
+		
 		return res;
 	}
 

@@ -17,12 +17,16 @@ public class SystemeSolaire {
 	protected Calculator calcul;
 	protected Entite entityCenter;
 	protected Vaisseau vaisseau;
+	protected double g;
+	protected double rayon;
+	protected double fa;
 	
 	
 	public SystemeSolaire() {
 		entityList=new ArrayList<EntiteMobile>();
 		calcul = new SteppedCalculator();
 		entityCenter = new Etoile(new Point(0,0),20,20,"Soleil");
+		g=0.01;
 	}
 	
 	public Etoile getEntityCenter() {
@@ -87,6 +91,30 @@ public class SystemeSolaire {
 		} else {
 			entityList.add(em);
 		}
+	}
+
+	public double getG() {
+		return g;
+	}
+
+	public void setG(double g) {
+		this.g = g;
+	}
+
+	public double getRayon() {
+		return rayon;
+	}
+
+	public void setRayon(double rayon) {
+		this.rayon = rayon;
+	}
+
+	public void setFa(double fa) {
+		this.fa = fa;
+		
+	}
+	public double getFa() {
+		return fa;
 	}
 	
 	
