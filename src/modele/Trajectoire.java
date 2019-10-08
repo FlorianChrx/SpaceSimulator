@@ -1,11 +1,7 @@
 package modele;
 
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-import java.io.File;
 
 /**
  * @Date 20/09/2019
@@ -178,22 +174,6 @@ public class Trajectoire {
 	 */
 	public Trajectoire(List<Point> localisation, List<Vecteur> vecteur) {
 		this(localisation, vecteur,  0.1);
-	}
-	
-	/**
-	 * Constructeur ne prenant aucun paramètre, initialise une nouvelle liste de points
-	 * et utilise le pas par défaut defini dans le fichier config
-	 * @throws Exception
-	 */
-	public Trajectoire() throws Exception {
-		Properties props = new Properties();
-		new File("config/").mkdirs();
-		try {
-			props.load(new FileInputStream("config/config.yml"));
-			pas = Double.parseDouble(props.getProperty("pas"));
-		} catch (IOException e) {
-			throw new Exception("Fichier de configuration manquant");
-		}
 	}
 	
 	/**

@@ -11,9 +11,11 @@ import java.util.List;
 
 public class SystemeSolaire {
 	
+
 	protected List<EntiteMobile> entityList;
 	protected Calculator calcul;
 	protected Entite entityCenter;
+	protected Vaisseau vaisseau;
 	
 	
 	public SystemeSolaire() {
@@ -50,6 +52,7 @@ public class SystemeSolaire {
 		return this.entityList.get(index);
 	}
 
+
 	public void setAllPas(double pas) {
 		for(EntiteMobile em : this.entityList) {
 			em.setPas(pas);
@@ -58,6 +61,31 @@ public class SystemeSolaire {
 	
 	public void setPas(double pas ,int index) {
 		getEntity(index).setPas(pas);
+	}
+
+	public Vaisseau getVaisseau() {
+		return vaisseau;
+	}
+
+	public void setVaisseau(Vaisseau vaisseau) {
+		this.vaisseau = vaisseau;
+	}
+
+	public void setCalcul(Calculator calcul) {
+		this.calcul = calcul;
+	}
+
+	public void addVaisseau(Vaisseau v) {
+		setVaisseau(v);
+		entityList.add(v);
+	}
+	
+	public void add(EntiteMobile em) {
+		if(em instanceof Vaisseau) {
+			addVaisseau((Vaisseau) em);
+		} else {
+			entityList.add(em);
+		}
 	}
 	
 	

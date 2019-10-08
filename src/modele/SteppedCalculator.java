@@ -31,8 +31,15 @@ public class SteppedCalculator implements Calculator {
 		*/
 	}
 	
-	public double Acceleration() {
-		return 0;
+	public Vecteur Acceleration() {
+		return new Vecteur(0, 0);
+	}
+	
+	public Vecteur vitesse(EntiteMobile e) {
+		Vecteur vec = new Vecteur(e.getTrajectoire().getLastVecteur().vitx, e.getTrajectoire().getLastVecteur().vitx);
+		//0.01 = valeur de la pousée du vaisseau
+		vec.changeNorme(vec.getNorme()+0.01);
+		return Vecteur.somme(Acceleration(), vec);
 	}
 	
 	/**
