@@ -1,11 +1,8 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import controller.MainController;
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,7 +19,6 @@ import modele.Etoile;
 public class Interface {
 
 	public Interface(Stage stage,MainController m) {
-		List<Node> SystemeList = new ArrayList<Node>();
 		HBox h = new HBox(); 
 		int len = m.getSysol().getEntityList().size();
 		HBox slider = new HBox();
@@ -38,7 +34,6 @@ public class Interface {
 		m.setOnSliderRalenti(ralenti);
 		drawEntite(gc , m.getSysol().getEntityCenter(),c);
 		Button b = new Button("Valider");
-		//m.setOnButton(b, SystemeList.get(0));
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
 		Scene sc = new Scene(h,600,500);

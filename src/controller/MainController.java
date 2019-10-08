@@ -1,14 +1,8 @@
 package controller;
 
-import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import javafx.scene.shape.CubicCurveTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.util.Duration;
 import modele.Planete;
 import modele.Point;
 import modele.SystemeSolaire;
@@ -50,22 +44,9 @@ public class MainController {
 	
 	public void setOnButton(Button b,Node rectPath) {
 		b.setOnAction(e->{
-			transitionPlanete(rectPath);
+			
 		});
 	}
 	
-	public void transitionPlanete(Node rectPath) {
-	Path path = new Path();
-	path.getElements().add(new MoveTo(20,20));
-	path.getElements().add(new CubicCurveTo(380, 0, 380, 120, 200, 120));
-	path.getElements().add(new CubicCurveTo(0, 120, 0, 240, 380, 240));
-	PathTransition pathTransition = new PathTransition();
-	pathTransition.setDuration(Duration.millis(4000));
-	pathTransition.setPath(path);
-	pathTransition.setNode(rectPath);
-	pathTransition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-	pathTransition.setCycleCount(Timeline.INDEFINITE);
-	pathTransition.setAutoReverse(true);
-	pathTransition.play();
-	}
+
 }
