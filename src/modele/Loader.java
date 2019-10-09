@@ -11,7 +11,7 @@ public class Loader {
 	public static SystemeSolaire charger() throws IOException, PropertiesException {
 		List<String> tmp = new ArrayList<String>();
 
-		BufferedReader buff = new BufferedReader(new FileReader("ressource/A TROUVER"));
+		BufferedReader buff = new BufferedReader(new FileReader("ressource/properties"));
 		String ligne;
 		while ((ligne = buff.readLine()) != null) {
 			tmp.add(ligne);
@@ -62,7 +62,7 @@ public class Loader {
 	private static Planete parseSimule(String[] tab, String[] tab2, double dt) {
 		return new Planete(
 				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
-				Double.parseDouble(tab2[1]), 20, tab[0],
+				Double.parseDouble(tab2[1].split("=")[1]), 20, tab[0],
 				new Vecteur(Double.parseDouble(tab2[4].split("=")[1]), Double.parseDouble(tab2[5].split("=")[1])),
 				new Trajectoire(dt));
 	}
@@ -79,7 +79,7 @@ public class Loader {
 	private static Etoile parseFixe(String[] tab, String[] tab2) {
 		return new Etoile(
 				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
-				Double.parseDouble(tab2[1]), 40, tab[0]);
+				Double.parseDouble(tab2[1].split("=")[1]), 40, tab[0]);
 	}
 
 }
