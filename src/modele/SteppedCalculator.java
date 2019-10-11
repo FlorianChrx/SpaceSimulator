@@ -11,11 +11,11 @@ import java.util.List;
 public class SteppedCalculator implements Calculator {
 	//Les attributs
 	protected final double G = 6.67408 * Math.pow(10, -10);//Constante gravitationnelle en m3.kg^-1.s^-1;
-	
+	protected Vecteur acceleration = new Vecteur(0, 0);
 	
 	//Le constructeur
-	public SteppedCalculator() {
-		
+	public SteppedCalculator(Vaisseau v) {
+		this.acceleration = new Vecteur (v.getpPrincipale(), v.getpRetro());
 	}
 
 	//Les m�thodes
@@ -23,11 +23,10 @@ public class SteppedCalculator implements Calculator {
 	/**
 	 * Bonne question
 	 */
-	public void CalculNextStep(SystemeSolaire s) {
+	public void CalculNextStep(List<EntiteMobile> entities) {
 		
 	}
 	
-	/*
 	public Vecteur calculeAcceleration(Vaisseau mobile, List<Entite> entites, Entite entiteSelected) {
 		Vecteur numerateur = this.vecteurUnitaire(mobile, entites.get(0));
 		Vecteur denominateur = this.acceleration;
@@ -44,7 +43,6 @@ public class SteppedCalculator implements Calculator {
 		
 		return this.acceleration;
 	}
-	*/
 	
 	/*
 	 * Formule V = racine((vitesse initial)² + (2 * distance * acceleration) )
@@ -55,6 +53,15 @@ public class SteppedCalculator implements Calculator {
 		
 	}
 	
+	public Vecteur vecteurUnitaire(Entite mobile, Entite entite) {
+		Vecteur unitaire = Vecteur.buildVector(mobile.getPosition(), entite.getPosition());
+		double distance = unitaire.getNorme();
+		unitaire.setVitx(unitaire.getVitx() * distance);
+		unitaire.setVity(unitaire.getVity() * distance);
+
+		return unitaire;
+	}
+	
 	/**
 	 * Permet de calculer la force gravitationnelle
 	 * @param vaisseau
@@ -63,7 +70,11 @@ public class SteppedCalculator implements Calculator {
 	 */
 	public double normeForceGravitationnel(Entite mobile, Entite entite) {
 		double distance = mobile.getPoint().distance(entite.getPoint());
-		return this.G * (( entite.masse * mobile.masse ) / Math.pow(distance, 2));
+		if (this.vecteurUnitaire(mobile, entite).getVitx() >= 0 || this.vecteurUnitaire(mobile, entite).getVity() >= 0) {
+			return this.G * (( mobile.masse * entite.masse ) / Math.pow(distance, 2));
+		}else {
+			return - this.G * (( mobile.masse * entite.masse ) / Math.pow(distance, 2));
+		}
 	}
 	
 	public Vecteur forceBetween(Entite mobile, Entite entite) {
@@ -111,18 +122,6 @@ public class SteppedCalculator implements Calculator {
 			
 			mobile.getTrajectoire().vecteurs.add(mobile.getVitesse());
 		}
-	}
-
-	@Override
-	public void CalculNextStep(List<EntiteMobile> list) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void euleurExplicite(double tDebut, double tFin, EntiteMobile mobile) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	
