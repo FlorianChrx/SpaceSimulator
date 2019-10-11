@@ -180,11 +180,11 @@ public class Trajectoire {
 	 * Fonction permettant d'obtenir le pas actuel de cette trajectoire
 	 * @return un double représentant le pas de la trajectoire (le temps qui s'écoule entre 2 points)
 	 */
-	public double getPas() {
+	public double getDeltaT() {
 		return deltaT;
 	}
 	
-	public void setPas(double pas) {
+	public void setDeltaT(double pas) {
 		this.deltaT=pas;
 	}
 	

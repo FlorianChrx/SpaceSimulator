@@ -39,7 +39,7 @@ public abstract class EntiteMobile extends Entite{
 	}
 	
 	public void setPas(double pas) {
-		trajectoire.setPas(pas);
+		trajectoire.setDeltaT(pas);
 	}
 	
 }
