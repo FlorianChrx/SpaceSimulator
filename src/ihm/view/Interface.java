@@ -10,30 +10,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import modele.system.Entite;
-import modele.system.Etoile;
+import viewModele.PlaneteManagementModel;
 
 
 public class Interface {
 
 	public Interface(Stage stage,MainController m) {
+		PlaneteManagementModel model = new PlaneteManagementModel(m.getSysol());
 		HBox h = new HBox(); 
 		int len = m.getSysol().getEntityList().size();
 		HBox slider = new HBox();
 		VBox menu = new VBox();
-		Slider pas = initSlider(0.5,50,25,Orientation.VERTICAL);
-		Slider ralenti = initSlider(0,500,0,Orientation.VERTICAL);
+		Slider pas = model.initSlider(0.5,50,25,Orientation.VERTICAL);
+		Slider ralenti = model.initSlider(0,500,0,Orientation.VERTICAL);
 		slider.getChildren().addAll(pas,ralenti);
 		Canvas c = new Canvas(500,500);
 		GraphicsContext gc = c.getGraphicsContext2D();
-		changerBakcgroundColorCanvas(c, gc);
-		for(int i = 0;i<len;i++) {drawEntite(gc ,m.getSysol().getEntityList().get(i),c);}
+		model.changerBakcgroundColorCanvas(c, gc);
+		model.drawAllEntite(len, gc, c);
 		m.setOnSliderPas(pas);
 		m.setOnSliderRalenti(ralenti);
-		drawEntite(gc , m.getSysol().getEntityCenter(),c);
+		model.drawCentre(gc, c);
 		Button b = new Button("Valider");
+		b.setOnAction(e->{
+			model.launchCalcul();
+		});
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
 		Scene sc = new Scene(h,600,500);
@@ -43,33 +45,7 @@ public class Interface {
 		stage.show();
 	}
 	
-	private void drawEntite(GraphicsContext gc,Entite p,Canvas c) {
-        
-        if(p instanceof Etoile) {
-        	gc.setFill(Color.YELLOW);
-        }else{
-        	gc.setFill(Color.WHITE);
-        }
-        
-        gc.fillOval(p.getPoint().getX()+(c.getWidth()/2),p.getPoint().getY()+(c.getHeight()/2),p.getRayon(),p.getRayon());
-    }
-	
-	private Slider initSlider(double min,double max,double valInit,Orientation o) {
-		Slider res = new Slider(min,max,valInit);
-		res.setShowTickMarks(true);
-		res.setShowTickLabels(true);
-		res.setMajorTickUnit(10);
-		res.setMinorTickCount(10);
-		res.setBlockIncrement(1);
-		res.setOrientation(o);
-		return res;
-	}
-	
-	
-	private void changerBakcgroundColorCanvas (Canvas c, GraphicsContext gc) {
-		gc.setFill(Color.BLACK);
-		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
-	}
+
 	
 	
 }

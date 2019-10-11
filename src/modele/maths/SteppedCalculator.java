@@ -4,6 +4,7 @@ import java.util.List;
 
 import modele.system.Entite;
 import modele.system.EntiteMobile;
+import modele.system.SystemeSolaire;
 import modele.system.Vaisseau;
 
 /**
@@ -26,7 +27,7 @@ public class SteppedCalculator implements Calculator {
 	/**
 	 * Bonne question
 	 */
-	public void CalculNextStep(List<EntiteMobile> entities) {
+	public void CalculNextStep(SystemeSolaire s) {
 
 	}
 
@@ -76,9 +77,9 @@ public class SteppedCalculator implements Calculator {
 		double distance = mobile.getPoint().distance(entite.getPoint());
 		if (this.vecteurUnitaire(mobile, entite).getVitx() >= 0
 				|| this.vecteurUnitaire(mobile, entite).getVity() >= 0) {
-			return this.G * ((mobile.masse * entite.masse) / Math.pow(distance, 2));
+			return this.G * ((mobile.getMasse() * entite.getMasse()) / Math.pow(distance, 2));
 		} else {
-			return -this.G * ((mobile.masse * entite.masse) / Math.pow(distance, 2));
+			return -this.G * ((mobile.getMasse() * entite.getMasse()) / Math.pow(distance, 2));
 		}
 	}
 
