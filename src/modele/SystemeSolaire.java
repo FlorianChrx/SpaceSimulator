@@ -12,16 +12,18 @@ import java.util.List;
 
 public class SystemeSolaire implements Iterable<EntiteMobile>{
 	
-	protected List<EntiteMobile> entityList;
+	protected List<EntiteMobile> planetes;
+	protected List<EntiteMobile> etoiles;
 	protected Calculator calcul;
 	protected Entite entityCenter;
 	protected Vaisseau vaisseau;
 	
 	
 	public SystemeSolaire() {
-		entityList=new ArrayList<EntiteMobile>();
+		planetes =new ArrayList<EntiteMobile>();
+		etoiles =new ArrayList<EntiteMobile>();
 		calcul = new BidonCalculator();
-		entityCenter = new Etoile(new Point(0,0),20,20,"Soleil");
+		entityCenter = new Etoile(new Point(0,0),20,20,"Soleil", null, null);
 	}
 	
 	public Etoile getEntityCenter() {
@@ -31,36 +33,46 @@ public class SystemeSolaire implements Iterable<EntiteMobile>{
 	public void setEntityCenter(Etoile entityCenter) {
 		this.entityCenter = entityCenter;
 	}
-
+	
+	/**
+	 * 
+	 * @return un liste non modifiable des entites mobiles du système
+	 */
 	public List<EntiteMobile> getEntityList() {
-		return entityList;
-	}
-
-	public void setEntityList(List<EntiteMobile> entityList) {
-		this.entityList = entityList;
+		List<EntiteMobile> list = new ArrayList<EntiteMobile>();
+		list.addAll(etoiles);
+		list.addAll(planetes);
+		list.add(vaisseau);
+		return list;
 	}
 	
-	public void addEntity(EntiteMobile em) {
-		entityList.add(em);
+	public boolean addEntity(EntiteMobile em) {
+		if(em instanceof Etoile) {
+			addEntity((Etoile) em);
+			return true;
+		} else if (em instanceof Planete) {
+			addEntity((Planete) em);
+			return true;
+		}
+		return false;
+	}
+	
+	public void addEntity(Etoile e) {
+		etoiles.add(e);
+	}
+	
+	public void addEntity(Planete e) {
+		planetes.add(e);
 	}
 
 	public Calculator getCalcul() {
 		return calcul;
 	}
-	
-	public EntiteMobile getEntity (int index) {
-		return this.entityList.get(index);
-	}
-
 
 	public void setAllPas(double pas) {
-		for(EntiteMobile em : this.entityList) {
+		for(EntiteMobile em : getEntityList()) {
 			em.setPas(pas);
 		}
-	}
-	
-	public void setPas(double pas ,int index) {
-		getEntity(index).setPas(pas);
 	}
 
 	public Vaisseau getVaisseau() {
@@ -75,22 +87,9 @@ public class SystemeSolaire implements Iterable<EntiteMobile>{
 		this.calcul = calcul;
 	}
 
-	public void addVaisseau(Vaisseau v) {
-		setVaisseau(v);
-		entityList.add(v);
-	}
-	
-	public void add(EntiteMobile em) {
-		if(em instanceof Vaisseau) {
-			addVaisseau((Vaisseau) em);
-		} else {
-			entityList.add(em);
-		}
-	}
-
 	@Override
 	public Iterator<EntiteMobile> iterator() {
-		return entityList.iterator();
+		return getEntityList().iterator();
 	}
 	
 	

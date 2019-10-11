@@ -3,12 +3,12 @@ package modele;
 /**
  * @Date 26/09/2019
  * @author lefrancn
- * Class qui hérite de Entité, c'est la seul entité quin'est pas mobile et dont on a besoins pour un systéme solaire
+ * Class qui hï¿½rite de Entitï¿½, c'est la seul entitï¿½ quin'est pas mobile et dont on a besoins pour un systï¿½me solaire
  */
-public class Etoile extends Entite {
+public class Etoile extends EntiteMobile {
 
-	public Etoile(Point position, double masse, double rayon, String name) {
-		super(position, masse, rayon, name);
+	public Etoile(Point position, double masse, double rayon, String name, Vecteur vitesse, Trajectoire trajectoire) {
+		super(position, masse, rayon, name, vitesse, trajectoire);
 	}
 	
 }
