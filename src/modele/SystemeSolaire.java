@@ -10,7 +10,7 @@ import java.util.List;
  * Class 
  */
 
-public class SystemeSolaire implements Iterable<EntiteMobile> {
+public class SystemeSolaire implements Iterable<EntiteMobile>{
 	
 	protected List<EntiteMobile> entityList;
 	protected Calculator calcul;

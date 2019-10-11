@@ -1,6 +1,5 @@
 package controller;
 
-
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import modele.Calculator;

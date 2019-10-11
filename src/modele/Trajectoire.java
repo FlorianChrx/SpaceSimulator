@@ -34,7 +34,7 @@ public class Trajectoire {
 	/**
 	 * Attribut représentant le pas entre chaque calcul de point
 	 */
-	protected double pas;
+	protected double deltaT;
 	
 	/**
 	 * permet d'ajouter un point à la trajectoire;
@@ -120,7 +120,7 @@ public class Trajectoire {
 		int result = 1;
 		result = prime * result + ((localisations == null) ? 0 : localisations.hashCode());
 		long temp;
-		temp = Double.doubleToLongBits(pas);
+		temp = Double.doubleToLongBits(deltaT);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -141,7 +141,7 @@ public class Trajectoire {
 		} else if (!localisations.equals(other.localisations)) {
 			return false;
 		}
-		if (Double.doubleToLongBits(pas) != Double.doubleToLongBits(other.pas)) {
+		if (Double.doubleToLongBits(deltaT) != Double.doubleToLongBits(other.deltaT)) {
 			return false;
 		}
 		return true;
@@ -155,7 +155,7 @@ public class Trajectoire {
 	public Trajectoire(List<Point> localisations, List<Vecteur> vecteur, double pas) {
 		super();
 		this.localisations = localisations;
-		this.pas = pas;
+		this.deltaT = pas;
 		this.vecteurs = vecteur;
 	}
 	
@@ -181,11 +181,11 @@ public class Trajectoire {
 	 * @return un double représentant le pas de la trajectoire (le temps qui s'écoule entre 2 points)
 	 */
 	public double getPas() {
-		return pas;
+		return deltaT;
 	}
 	
 	public void setPas(double pas) {
-		this.pas=pas;
+		this.deltaT=pas;
 	}
 	
 	public void addVector(Vecteur v) {
