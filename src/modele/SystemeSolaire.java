@@ -35,7 +35,9 @@ public class SystemeSolaire implements Iterable<EntiteMobile>{
 	}
 	
 	/**
-	 * 
+	 * retourne la liste de toutes les entites mobiles du systèm
+	 * ATTENTION: seul les éléments sont modifiables, vous ne pouvez pas ajouter
+	 * des éléments via la liste obtenue
 	 * @return un liste non modifiable des entites mobiles du système
 	 */
 	public List<EntiteMobile> getEntityList() {
@@ -46,6 +48,11 @@ public class SystemeSolaire implements Iterable<EntiteMobile>{
 		return list;
 	}
 	
+	/**
+	 * Permet d'ajouter une entite mobile de n'importe quel type
+	 * @param em l'entite mobile qui doit etre ajoutée au système
+	 * @return si l'objet a bien été ajouté au système
+	 */
 	public boolean addEntity(EntiteMobile em) {
 		if(em instanceof Etoile) {
 			addEntity((Etoile) em);
@@ -68,7 +75,11 @@ public class SystemeSolaire implements Iterable<EntiteMobile>{
 	public Calculator getCalcul() {
 		return calcul;
 	}
-
+	
+	/**
+	 * Permet de fixer le deltaT de chaque entité du système
+	 * @param pas le pas de temps à fixer entre chaque point
+	 */
 	public void setAllPas(double pas) {
 		for(EntiteMobile em : getEntityList()) {
 			em.setPas(pas);
