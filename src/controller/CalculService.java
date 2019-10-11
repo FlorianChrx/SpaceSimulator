@@ -1,15 +1,14 @@
 package controller;
 
-import java.util.List;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import modele.Calculator;
-import modele.EntiteMobile;
+import modele.SystemeSolaire;
 
 public class CalculService extends Service<Void> {
 	
-	protected List<EntiteMobile> list;
+	protected SystemeSolaire sol;
 	protected Calculator calculator;
 	protected int ralentissement;
 	
@@ -17,9 +16,9 @@ public class CalculService extends Service<Void> {
 	 * @param list
 	 * @param calculator
 	 */
-	public CalculService(List<EntiteMobile> list, Calculator calculator) {
+	public CalculService(SystemeSolaire sol, Calculator calculator) {
 		super();
-		this.list = list;
+		this.sol = sol;
 		this.calculator = calculator;
 	}
 
@@ -31,7 +30,7 @@ public class CalculService extends Service<Void> {
 	public class CalculTask extends Task<Void> {
 		@Override
 		protected Void call() throws Exception {
-			calculator.CalculNextStep(list);
+			calculator.CalculNextStep(sol);
 			Thread.sleep(ralentissement);
 			return null;
 		}
