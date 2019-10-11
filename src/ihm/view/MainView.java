@@ -1,6 +1,6 @@
-package view;
+package ihm.view;
 
-import controller.MainController;
+import ihm.controller.MainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 

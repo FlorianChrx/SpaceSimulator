@@ -1,8 +1,12 @@
-package modele;
+package modele.system;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import modele.maths.BidonCalculator;
+import modele.maths.Calculator;
+import modele.maths.Point;
 
 /**
  * @Date 20/09/2019

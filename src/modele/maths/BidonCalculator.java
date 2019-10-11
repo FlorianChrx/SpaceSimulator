@@ -1,4 +1,7 @@
-package modele;
+package modele.maths;
+
+import modele.system.EntiteMobile;
+import modele.system.SystemeSolaire;
 
 public class BidonCalculator implements Calculator {
 	

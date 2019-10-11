@@ -1,16 +1,18 @@
-package modele;
+package modele.system;
+
+import modele.maths.Point;
 
 /**
  * @Date 20/09/2019
  * @author lefrancn
- * Class abstract créant une entiter
+ * Class abstract crï¿½ant une entiter
  */
 
 public abstract class Entite {
-	protected Point position; // composé d'un x et d'un y
+	protected Point position; // composï¿½ d'un x et d'un y
 	protected double masse; //en kg
 	protected double rayon; //en m
-	protected String name; // nom de l'entité
+	protected String name; // nom de l'entitï¿½
 	
 	
 	public Entite(Point position, double masse, double rayon, String name) {
@@ -86,7 +88,7 @@ public abstract class Entite {
 	
 	/**
 	 * @param point
-	 * @return la distance en double entre le point courant et celui passer en paramétre
+	 * @return la distance en double entre le point courant et celui passer en paramï¿½tre
 	 */
 	public double ecart(Point point) {
 		return position.distance(point);

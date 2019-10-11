@@ -1,7 +1,7 @@
-package view;
+package ihm.view;
 
 
-import controller.MainController;
+import ihm.controller.MainController;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -12,8 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import modele.Entite;
-import modele.Etoile;
+import modele.system.Entite;
+import modele.system.Etoile;
 
 
 public class Interface {

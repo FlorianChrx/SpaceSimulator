@@ -1,6 +1,10 @@
-package modele;
+package modele.maths;
 
 import java.util.List;
+
+import modele.system.Entite;
+import modele.system.EntiteMobile;
+import modele.system.Vaisseau;
 
 /**
  * @Date 20/09/2019

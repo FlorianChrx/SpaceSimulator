@@ -1,4 +1,8 @@
-package modele;
+package modele.system;
+
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
 
 /**
  * @Date 26/09/2019

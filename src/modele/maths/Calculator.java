@@ -1,4 +1,6 @@
-package modele;
+package modele.maths;
+
+import modele.system.SystemeSolaire;
 
 /**
  * 20/09/2019

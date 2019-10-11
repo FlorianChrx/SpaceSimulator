@@ -1,8 +1,13 @@
-package modele;
+package modele.system;
+
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
+
 /**
  * @Date 20/09/2019
  * @author lefrancn
- * Class qui hérite de EntitéMobile étant la seule a avoir des méthode différente
+ * Class qui hï¿½rite de Entitï¿½Mobile ï¿½tant la seule a avoir des mï¿½thode diffï¿½rente
  */
 
 public class Vaisseau extends EntiteMobile {

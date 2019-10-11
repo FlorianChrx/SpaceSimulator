@@ -1,14 +1,14 @@
-package controller;
+package ihm.controller;
 
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import modele.Planete;
-import modele.Point;
-import modele.SystemeSolaire;
-import modele.Trajectoire;
-import modele.Vecteur;
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
+import modele.system.Planete;
+import modele.system.SystemeSolaire;
 
 public class MainController {
 

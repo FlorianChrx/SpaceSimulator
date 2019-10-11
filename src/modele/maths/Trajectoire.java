@@ -1,4 +1,4 @@
-package modele;
+package modele.maths;
 
 import java.util.ArrayList;
 import java.util.List;

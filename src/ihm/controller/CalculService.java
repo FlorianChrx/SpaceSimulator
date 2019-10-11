@@ -1,9 +1,9 @@
-package controller;
+package ihm.controller;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import modele.Calculator;
-import modele.SystemeSolaire;
+import modele.maths.Calculator;
+import modele.system.SystemeSolaire;
 
 public class CalculService extends Service<Void> {
 	
