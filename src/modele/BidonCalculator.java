@@ -2,7 +2,6 @@ package modele;
 
 public class BidonCalculator implements Calculator {
 	
-	SystemeSolaire sol = new SystemeSolaire();
 	int var = 0;
 
 	@Override

@@ -1,6 +1,7 @@
 package modele;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -9,9 +10,8 @@ import java.util.List;
  * Class 
  */
 
-public class SystemeSolaire {
+public class SystemeSolaire implements Iterable<EntiteMobile> {
 	
-
 	protected List<EntiteMobile> entityList;
 	protected Calculator calcul;
 	protected Entite entityCenter;
@@ -20,7 +20,7 @@ public class SystemeSolaire {
 	
 	public SystemeSolaire() {
 		entityList=new ArrayList<EntiteMobile>();
-		calcul = new SteppedCalculator();
+		calcul = new BidonCalculator();
 		entityCenter = new Etoile(new Point(0,0),20,20,"Soleil");
 	}
 	
@@ -86,6 +86,11 @@ public class SystemeSolaire {
 		} else {
 			entityList.add(em);
 		}
+	}
+
+	@Override
+	public Iterator<EntiteMobile> iterator() {
+		return entityList.iterator();
 	}
 	
 	
