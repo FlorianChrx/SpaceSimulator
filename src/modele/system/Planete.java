@@ -1,9 +1,13 @@
-package modele;
+package modele.system;
+
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
 
 /**
  * @Date 20/09/2019
  * @author lefrancn
- * Class qui hérite de EntitéMobile le vaisseau ayant des méthodes spécifique a lui
+ * Class qui hï¿½rite de Entitï¿½Mobile le vaisseau ayant des mï¿½thodes spï¿½cifique a lui
  */
 public class Planete extends EntiteMobile{
 

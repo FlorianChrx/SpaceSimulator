@@ -1,10 +1,18 @@
-package modele;
+package modele.loader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
+import modele.system.Etoile;
+import modele.system.Planete;
+import modele.system.SystemeSolaire;
+import modele.system.Vaisseau;
 
 public class Loader {
 
@@ -32,13 +40,13 @@ public class Loader {
 				String[] tab2 = tab[1].split(" ");
 				switch (tab2[0]) {
 				case "Fixe":
-					res.setEntityCenter(parseFixe(tab, tab2));
+					res.setEntityCenter(parseFixe(tab, tab2,dt));
 					break;
 				case "Simulé":
 					res.addEntity(parseSimule(tab, tab2, dt));
 					break;
 				case "Vaisseau":
-					res.addVaisseau(parseVaisseau(tab, tab2, dt));
+					res.setVaisseau(parseVaisseau(tab, tab2, dt));
 					break;
 				}
 			} else if (s.substring(0, 6).equals("PARAMS")) {
@@ -76,10 +84,10 @@ public class Loader {
 				Double.parseDouble(tab2[7].split("=")[1]));
 	}
 
-	private static Etoile parseFixe(String[] tab, String[] tab2) {
+	private static Etoile parseFixe(String[] tab, String[] tab2,double dt) {
 		return new Etoile(
 				new Point(Double.parseDouble(tab2[2].split("=")[1]), Double.parseDouble(tab2[3].split("=")[1])),
-				Double.parseDouble(tab2[1].split("=")[1]), 40, tab[0]);
+				Double.parseDouble(tab2[1].split("=")[1]), 40.0, tab[0], new Vecteur(0, 0), new Trajectoire(dt));
 	}
 
 }

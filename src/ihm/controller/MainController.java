@@ -1,22 +1,25 @@
-package controller;
+package ihm.controller;
 
 
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
-import modele.Planete;
-import modele.Point;
-import modele.SystemeSolaire;
-import modele.Trajectoire;
-import modele.Vecteur;
+import modele.maths.Point;
+import modele.maths.Trajectoire;
+import modele.maths.Vecteur;
+import modele.system.Etoile;
+import modele.system.Planete;
+import modele.system.SystemeSolaire;
 
 public class MainController {
 
-	SystemeSolaire sysol= new SystemeSolaire();
+	SystemeSolaire sysol = new SystemeSolaire();
 	Planete em = new Planete(new Point(20,20),50,20,"UrAnus",new Vecteur(10,10),new Trajectoire(0.25));
+	Etoile et = new Etoile(new Point(50,50),50,20,"UrAnus",new Vecteur(10,10),new Trajectoire(0.25));
 	
 	public MainController() {
 		sysol.addEntity(em);
+		sysol.addEntity(et);
 	}
 	
 	public SystemeSolaire getSysol() {
@@ -42,12 +45,5 @@ public class MainController {
 	public void changeRalenti(double newRalenti) {
 		
 	}
-	
-	public void setOnButton(Button b,Node rectPath) {
-		b.setOnAction(e->{
-			
-		});
-	}
-	
 
 }

@@ -1,4 +1,4 @@
-package modele;
+package modele.loader;
 
 public class PropertiesException extends Exception {
 

@@ -1,13 +1,13 @@
-package modele;
+package modele.maths;
 
 /**
  * @Date 20/09/2019
  * @author lefrancn
- * Class Point permettant de creer des points a partir d'absysse et d'ordonné
+ * Class Point permettant de creer des points a partir d'absysse et d'ordonnï¿½
  */
 public class Point {
 	protected double x; //axe des absysses
-	protected double y; //axe des ordonné
+	protected double y; //axe des ordonnï¿½
 	
 	public Point(double x, double y) {
 		super();
@@ -35,7 +35,7 @@ public class Point {
 	 * 
 	 * @param point
 	 * @return la distance en double entre 2 points
-	 * Soustrait les x et les y pour ensuite additionner le résultat
+	 * Soustrait les x et les y pour ensuite additionner le rï¿½sultat
 	 */
 	public double distance(Point point) {
 		return (this.getX() - point.getX()) + this.getY() - point.getY();

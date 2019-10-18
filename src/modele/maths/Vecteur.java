@@ -1,4 +1,4 @@
-package modele;
+package modele.maths;
 
 import java.util.Arrays;
 import java.util.List;
@@ -57,6 +57,39 @@ public class Vecteur {
 		double ratio = norme / getNorme();
 		vitx *= ratio;
 		vity *= ratio;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		long temp;
+		temp = Double.doubleToLongBits(vitx);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(vity);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Vecteur other = (Vecteur) obj;
+		if (Double.doubleToLongBits(vitx) != Double.doubleToLongBits(other.vitx))
+			return false;
+		if (Double.doubleToLongBits(vity) != Double.doubleToLongBits(other.vity))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Vecteur [vitx=" + vitx + ", vity=" + vity + "]";
 	}
 	
 }

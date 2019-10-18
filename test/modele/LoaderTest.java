@@ -6,6 +6,10 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
+import modele.loader.Loader;
+import modele.loader.PropertiesException;
+import modele.system.SystemeSolaire;
+
 class LoaderTest {
 
 	@Test
