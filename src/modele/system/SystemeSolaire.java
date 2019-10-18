@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import modele.maths.BidonCalculator;
-import modele.maths.Calculator;
+
 import modele.maths.Point;
 import modele.maths.Trajectoire;
 import modele.maths.Vecteur;
@@ -18,16 +19,28 @@ import modele.maths.Vecteur;
 
 public class SystemeSolaire extends Observable implements Iterable<EntiteMobile> {
 
+	
+	public class MyTimerTask extends TimerTask{
+		@Override
+		public void run() {
+			update();
+		}
+	}
+	
+	
+	
+	
 	protected List<EntiteMobile> planetes;
 	protected List<EntiteMobile> etoiles;
-	protected Calculator calcul;
 	protected Entite entityCenter;
 	protected Vaisseau vaisseau;
+	protected double g;
+	protected double rayon;
+	protected double fa;
 
 	public SystemeSolaire() {
 		planetes = new ArrayList<EntiteMobile>();
 		etoiles = new ArrayList<EntiteMobile>();
-		calcul = new BidonCalculator();
 		entityCenter = new Etoile(new Point(0, 0), 20, 20, "Soleil", new Vecteur(0, 0), new Trajectoire(0));
 	}
 
@@ -88,10 +101,6 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 		planetes.add(e);
 	}
 
-	public Calculator getCalcul() {
-		return calcul;
-	}
-
 	/**
 	 * Permet de fixer le deltaT de chaque entité du système
 	 * 
@@ -112,14 +121,45 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 		this.vaisseau = vaisseau;
 	}
 
-	public void setCalcul(Calculator calcul) {
-		this.calcul = calcul;
-	}
-
 	@Override
 	public Iterator<EntiteMobile> iterator() {
 		return getEntityList().iterator();
 	}
 	
+	public double getG() {
+		return g;
+	}
 
+	public void setG(double g) {
+		this.g = g;
+	}
+
+	public double getRayon() {
+		return rayon;
+	}
+
+	public void setRayon(double rayon) {
+		this.rayon = rayon;
+	}
+
+	public void setFa(double fa) {
+		this.fa = fa;
+		
+	}
+	public double getFa() {
+		return fa;
+	}
+	
+	public void myTimer() {
+		Timer t = new Timer();
+		t.scheduleAtFixedRate(new MyTimerTask(), (long)0, (long)0.005);
+	}
+	
+	public void update() {
+		
+		
+		setChanged();
+		notifyObservers();
+	}
+	
 }

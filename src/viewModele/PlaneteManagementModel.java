@@ -18,11 +18,6 @@ public class PlaneteManagementModel {
 		this.sysol = sysol;
 	}
 
-	public void launchCalcul() {
-		final Service<Void> calculService = new CalculService(this.sysol, sysol.getCalcul());
-		calculService.start();
-	}
-
 	public int nbEntity() {
 		return sysol.getEntityList().size();
 	}
