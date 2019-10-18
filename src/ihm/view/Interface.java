@@ -38,6 +38,7 @@ public class Interface {
 		});
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
+		model.launchCalcul();
 		Scene sc = new Scene(h,600,500);
 		stage.setScene(sc);
 		stage.setTitle("SpaceSimulator");
