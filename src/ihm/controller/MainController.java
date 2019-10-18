@@ -1,8 +1,7 @@
 package ihm.controller;
 
 
-import javafx.scene.Node;
-import javafx.scene.control.Button;
+
 import javafx.scene.control.Slider;
 import modele.maths.Point;
 import modele.maths.Trajectoire;

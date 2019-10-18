@@ -1,6 +1,9 @@
 package ihm.view;
 
 
+import java.util.Observable;
+import java.util.Observer;
+
 import ihm.controller.MainController;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -14,7 +17,7 @@ import javafx.stage.Stage;
 import viewModele.PlaneteManagementModel;
 
 
-public class Interface {
+public class Interface implements Observer {
 
 	public Interface(Stage stage,MainController m) {
 		PlaneteManagementModel model = new PlaneteManagementModel(m.getSysol());
@@ -34,16 +37,21 @@ public class Interface {
 		model.drawCentre(gc, c);
 		Button b = new Button("Valider");
 		b.setOnAction(e->{
-			model.launchCalcul();
+			//model.launchCalcul();
 		});
 		menu.getChildren().addAll(slider,b);
 		h.getChildren().addAll(c,menu);
-		model.launchCalcul();
 		Scene sc = new Scene(h,600,500);
 		stage.setScene(sc);
 		stage.setTitle("SpaceSimulator");
 		stage.setResizable(false);
 		stage.show();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

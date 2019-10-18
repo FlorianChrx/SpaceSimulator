@@ -3,6 +3,7 @@ package modele.system;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Observable;
 
 import modele.maths.BidonCalculator;
 import modele.maths.Calculator;
@@ -15,7 +16,7 @@ import modele.maths.Vecteur;
  * @author rossezr Class
  */
 
-public class SystemeSolaire implements Iterable<EntiteMobile> {
+public class SystemeSolaire extends Observable implements Iterable<EntiteMobile> {
 
 	protected List<EntiteMobile> planetes;
 	protected List<EntiteMobile> etoiles;
@@ -119,5 +120,6 @@ public class SystemeSolaire implements Iterable<EntiteMobile> {
 	public Iterator<EntiteMobile> iterator() {
 		return getEntityList().iterator();
 	}
+	
 
 }
