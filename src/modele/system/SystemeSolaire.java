@@ -7,7 +7,6 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import modele.maths.BidonCalculator;
 import modele.maths.Calculator;
 import modele.maths.Point;
 import modele.maths.SteppedCalculator;

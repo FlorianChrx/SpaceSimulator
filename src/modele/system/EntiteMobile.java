@@ -38,8 +38,16 @@ public abstract class EntiteMobile extends Entite {
 		this.vitesse = vitesse;
 	}
 
-	public void setPas(double pas) {
-		trajectoire.setPas(pas);
+	public void setDeltaT(double pas) {
+		trajectoire.setDeltaT(pas);
+	}
+
+	public double getVitesseX() {
+		return getVitesse().getVitx();
+	}
+
+	public double getVitesseY() {
+		return getVitesse().getVity();
 	}
 
 }

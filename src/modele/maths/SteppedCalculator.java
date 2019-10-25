@@ -79,7 +79,7 @@ public class SteppedCalculator implements Calculator {
 	 */
 	public void EulerExplicite(SystemeSolaire s, EntiteMobile selectionne) {
 		double nouvPointX = selectionne.getVitesseX() + selectionne.getPositionX();
-		double nouvPointY = selectionne.getVitesseY() + selectionne.getPostionY();
+		double nouvPointY = selectionne.getVitesseY() + selectionne.getPositionY();
 		Point nouvPoint = new Point(nouvPointX, nouvPointY);
 
 		selectionne.getTrajectoire().addLocalisation(nouvPoint);
@@ -123,7 +123,7 @@ public class SteppedCalculator implements Calculator {
 	@Override
 	public void CalculNextStep(SystemeSolaire s) {
 		for (EntiteMobile entite : s) {
-			
+			EulerExplicite(s, entite);
 		}
 	}
 
