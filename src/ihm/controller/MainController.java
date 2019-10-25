@@ -14,9 +14,9 @@ public class MainController {
 	SystemeSolaire sysol = new SystemeSolaire();
 	
 		
-	Planete em = new Planete(new Point(20,20),50,20,"UrAnus",new Vecteur(10,10),new Trajectoire(0.25));
+	Planete em = new Planete(new Point(20,20),50,20,"moi",new Vecteur(10,10),new Trajectoire(0.25));
 	//Etoile et = new Etoile(new Point(50,50),50,20,"UrAnus",new Vecteur(10,10),new Trajectoire(0.25));
-	Planete em2 = new Planete(new Point(-20,-20),50,20,"UrAnus",new Vecteur(5,5),new Trajectoire(0.25));
+	Planete em2 = new Planete(new Point(-20,-20),50,20,"pasmoi",new Vecteur(5,5),new Trajectoire(0.25));
 	//Vaisseau v = new Vaisseau(new Point(100,100),50,20,"EtoileNoir",new Vecteur(10,10),new Trajectoire(0.25),0,0);
 	
 	public MainController() {
