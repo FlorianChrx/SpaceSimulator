@@ -33,6 +33,14 @@ public abstract class Entite {
 	public Point getPosition() {
 		return position;
 	}
+	
+	public double getPositionX() {
+		return getPosition().getX();
+	}
+	
+	public double getPositionY() {
+		return getPosition().getY();
+	}
 
 	public void setPosition(Point position) {
 		this.position = position;

@@ -1,5 +1,6 @@
-package math;
+package modele.maths;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
 
 public class Vecteur {
 	protected double vitx; // vecteur en absysse, on suppose qu'on part de 0
-	protected double vity; // vecteur en ordonné, on suppose qu'on part de 0
+	protected double vity; // vecteur en ordonnï¿½, on suppose qu'on part de 0
 
 	public Vecteur(double vitx, double vity) {
 		super();
@@ -105,4 +106,9 @@ public class Vecteur {
 	public String toString() {
 		return "Vecteur [vitx=" + vitx + ", vity=" + vity + "]";
 	}
+
+	public static Vecteur somme(Vecteur...vecteurs) {
+		return somme(Arrays.asList(vecteurs));
+	}
+
 }

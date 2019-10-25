@@ -1,4 +1,4 @@
-package math;
+package modele.maths;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,21 +11,21 @@ import java.util.Properties;
  * @Date 20/09/2019
  * @author CHIRAUX Florian
  *
- *         Classe permettant de représenter une trajectoire: la succesion de
- *         point et ses vecteurs vitesse associés ATTENTION: si vous utilisez
- *         les méthodes deprecated, utiliser uniquement cette partie car le
- *         nouveau fonctionnement est complètement dissocié
+ *         Classe permettant de reprï¿½senter une trajectoire: la succesion de
+ *         point et ses vecteurs vitesse associï¿½s ATTENTION: si vous utilisez
+ *         les mï¿½thodes deprecated, utiliser uniquement cette partie car le
+ *         nouveau fonctionnement est complï¿½tement dissociï¿½
  */
 public class Trajectoire {
 	// attributs
-	protected List<Point> localisations;// Attribut representant la trajectoire à travers une succession de points
-	protected List<Vecteur> vecteurs;// Attribut représentant la liste des vecteurs liés aux points de la trajectoire
-	protected double deltaT;// Attribut représentant le pas entre chaque calcul de point
+	protected List<Point> localisations;// Attribut representant la trajectoire ï¿½ travers une succession de points
+	protected List<Vecteur> vecteurs;// Attribut reprï¿½sentant la liste des vecteurs liï¿½s aux points de la trajectoire
+	protected double deltaT;// Attribut reprï¿½sentant le pas entre chaque calcul de point
 
 	// Constructeur
 	/**
-	 * Constructeur ne prenant aucun paramètre, initialise une nouvelle liste de
-	 * points et utilise le pas par défaut defini dans le fichier config
+	 * Constructeur ne prenant aucun paramï¿½tre, initialise une nouvelle liste de
+	 * points et utilise le pas par dï¿½faut defini dans le fichier config
 	 * 
 	 * @throws Exception
 	 */
@@ -41,7 +41,7 @@ public class Trajectoire {
 	}
 
 	/**
-	 * Constructeur prenant tous les attibuts en paramètre
+	 * Constructeur prenant tous les attibuts en paramï¿½tre
 	 * 
 	 * @param localisations
 	 * @param pas
@@ -70,19 +70,6 @@ public class Trajectoire {
 	 */
 	public Trajectoire(List<Point> localisation, List<Vecteur> vecteur) {
 		this(localisation, vecteur, 0.1);
-	}
-
-	// méthode
-	public double getDeltaT() {
-		return deltaT;
-	}
-
-	public void setDeltaT(double t) {
-		this.deltaT = t;
-	}
-
-	public void addVector(Vecteur v) {
-		vecteurs.add(v);
 	}
 
 	@Override
@@ -125,17 +112,9 @@ public class Trajectoire {
 	public double getVecteurX(int idx) {
 		return this.vecteurs.get(idx).getVitx();
 	}
-
-	public double getVecteurY(int idx) {
-		return this.vecteurs.get(idx).getVity();
-	}
-
-	public Point getPoint(int idx) {
-		return localisations.get(idx);
-	}
-
-	public double getPointX(int idx) {
-		return localisations.get(idx).getX();
+	
+	public void addVector(Vecteur v) {
+		vecteurs.add(v);
 	}
 
 	public double getPointY(int idx) {
@@ -147,35 +126,14 @@ public class Trajectoire {
 	}
 
 	public Point getLastPoint() {
-		return getPoint(localisations.size() - 1);
+		return localisations.get(localisations.size() - 1);
 	}
 
-	public double getLastPointX() {
-		return getPoint(localisations.size() - 1).getX();
+	public void setDeltaT(double deltaT) {
+		this.deltaT = deltaT;
 	}
-
-	public double getLastPointY() {
-		return getPoint(localisations.size() - 1).getY();
+	
+	public double getDeltaT() {
+		return deltaT;
 	}
-
-	public Vecteur getLastVecteur() {
-		return getVecteur(vecteurs.size() - 1);
-	}
-
-	public double getLastVecteurX() {
-		return getVecteurX(vecteurs.size() - 1);
-	}
-
-	public double getLastVecteurY() {
-		return getVecteurY(vecteurs.size() - 1);
-	}
-
-	public List<Point> getLocalisations() {
-		return localisations;
-	}
-
-	public List<Vecteur> getVecteurs() {
-		return vecteurs;
-	}
-
 }

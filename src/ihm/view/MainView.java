@@ -4,17 +4,16 @@ import ihm.controller.MainController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class MainView extends Application{
+public class MainView extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		new Interface(primaryStage,new MainController());
+		MainController m = new MainController();
+		new Interface(primaryStage, m);
 	}
 
 	public static void main(String[] args) {
 		Application.launch(args);
 	}
 
-
 }
-

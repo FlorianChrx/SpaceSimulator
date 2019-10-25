@@ -1,4 +1,4 @@
-package math;
+package modele.maths;
 /**
  * 20/09/2019
  * @author carpentm
@@ -6,9 +6,8 @@ package math;
  *
  */
 
-import system.EntiteMobile;
-import system.SystemeSolaire;
+import modele.system.SystemeSolaire;
 
 public interface Calculator {
-	public void CalculNextStep(SystemeSolaire sys, EntiteMobile selectionne);
+	public void CalculNextStep(SystemeSolaire sys);
 }
