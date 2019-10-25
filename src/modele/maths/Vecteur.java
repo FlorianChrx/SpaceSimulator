@@ -1,5 +1,6 @@
 package modele.maths;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -105,4 +106,9 @@ public class Vecteur {
 	public String toString() {
 		return "Vecteur [vitx=" + vitx + ", vity=" + vity + "]";
 	}
+
+	public static Vecteur somme(Vecteur...vecteurs) {
+		return somme(Arrays.asList(vecteurs));
+	}
+
 }
