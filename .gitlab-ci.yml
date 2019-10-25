@@ -1,0 +1,24 @@
+stages:
+  - 🔍test
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=./.m2/repository"
+
+cache:
+  paths:
+    - ./.m2/
+
+test::java:
+  stage: 🔍test
+  image: openjdk:11-jdk
+  script:
+    - apt-get update && apt-get -y install maven && apt-get clean
+    - mvn $MAVEN_OPTS test
+
+test::sonar:
+  stage: 🔍test
+  image: openjdk:11-jdk
+  script:
+    - apt-get update && apt-get -y install maven && apt-get clean
+    - mvn $MAVEN_OPTS compile sonar:sonar
+
