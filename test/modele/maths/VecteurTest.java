@@ -13,7 +13,7 @@ import org.junit.Test;
 
 /**
  * @author chirauxf
- *
+ *	Classe permettant de tester la Classe {@link modele.maths.Vecteur}
  */
 public class VecteurTest {
 
@@ -77,8 +77,8 @@ public class VecteurTest {
 	 */
 	@Test
 	public void testBuildVector() {
-		Point a = new Point(2.5 , 50);
-		Point b = new Point(2.5 , 100);
+		Point a = new Point(2.5, 50);
+		Point b = new Point(2.5, 100);
 		assertEquals(Vecteur.buildVector(a, b), new Vecteur(0, 50));
 		assertEquals(Vecteur.buildVector(b, a), new Vecteur(0, -50));
 	}

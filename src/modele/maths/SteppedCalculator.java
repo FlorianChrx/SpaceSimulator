@@ -1,140 +1,129 @@
 package modele.maths;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import modele.system.Entite;
 import modele.system.EntiteMobile;
 import modele.system.SystemeSolaire;
-import modele.system.Vaisseau;
 
 /**
  * @Date 20/09/2019
  * @author carpentm Class qui est implementé par SteppedCalculator
  */
-
 public class SteppedCalculator implements Calculator {
 	// Les attributs
-	protected final double G = 6.67408 * Math.pow(10, -10);// Constante gravitationnelle en m3.kg^-1.s^-1;
-	protected Vecteur acceleration = new Vecteur(0, 0);
+	protected double g;
+	protected Vecteur acceleration;
 
-	// Le constructeur
-	public SteppedCalculator(Vaisseau v) {
-		this.acceleration = new Vecteur(v.getpPrincipale(), v.getpRetro());
+	// Les constructeurs(ATTENTION certains sont a supprimer )
+	public SteppedCalculator(double g) {
+		this.g = g;
+		this.acceleration = new Vecteur(0, 0);
 	}
 
-	// Les m�thodes
-
-	/**
-	 * Bonne question
-	 */
-	public void CalculNextStep(SystemeSolaire s) {
-
-	}
-
-	public Vecteur calculeAcceleration(Vaisseau mobile, List<Entite> entites, Entite entiteSelected) {
-		Vecteur numerateur = this.vecteurUnitaire(mobile, entites.get(0));
-		Vecteur denominateur = this.acceleration;
-
-		for (int i = 1; i < entites.size(); i++) {
-			Vecteur v = this.vecteurUnitaire(mobile, entites.get(i));
-			numerateur = Vecteur.somme(numerateur, v);
-			denominateur.setVitx(denominateur.getVitx() + entites.get(i).getMasse());
-			denominateur.setVity(denominateur.getVity() + entites.get(i).getMasse());
-		}
-
-		acceleration.setVitx(numerateur.getVitx() / denominateur.getVitx());
-		acceleration.setVity(numerateur.getVity() / denominateur.getVity());
-
-		return this.acceleration;
-	}
-
-	/*
-	 * Formule V = racine((vitesse initial)² + (2 * distance * acceleration) )
-	 */
-	public double calculeVitesse() {
-
-		return 0;
-
-	}
-
-	public Vecteur vecteurUnitaire(Entite mobile, Entite entite) {
-		Vecteur unitaire = Vecteur.buildVector(mobile.getPosition(), entite.getPosition());
-		double distance = unitaire.getNorme();
-		unitaire.setVitx(unitaire.getVitx() * distance);
-		unitaire.setVity(unitaire.getVity() * distance);
-
-		return unitaire;
+	public SteppedCalculator() {
+		this(6.67408 * Math.pow(10, -10));
 	}
 
 	/**
-	 * Permet de calculer la force gravitationnelle
 	 * 
-	 * @param vaisseau
-	 * @param entite
-	 * @return la force gravitationnelle
+	 * @param s, represente le systeme solaire dans lequelle ont travaille
+	 * @return le vecteur unitaire Permet de calculer le vecteur unitaire qui est
+	 *         sous la forme (vecteurAB/norme ou distance AB)
 	 */
-	public double normeForceGravitationnel(Entite mobile, Entite entite) {
-		double distance = mobile.getPoint().distance(entite.getPoint());
-		if (this.vecteurUnitaire(mobile, entite).getVitx() >= 0
-				|| this.vecteurUnitaire(mobile, entite).getVity() >= 0) {
-			return this.G * ((mobile.getMasse() * entite.getMasse()) / Math.pow(distance, 2));
-		} else {
-			return -this.G * ((mobile.getMasse() * entite.getMasse()) / Math.pow(distance, 2));
+	public Vecteur CalculeVecteurUnitaire(Entite e1, Entite e2) {
+		Vecteur unit = Vecteur.buildVector(e1.getPosition(), e2.getPosition());
+		unit.changeNorme(1);
+		return unit;
+	}
+
+	/**
+	 * 
+	 * @param s, represente le systeme solaire dans lequelle ont travaille
+	 * @return la force gravitationnelle entre deux corps celestes Le calcule est
+	 */
+	public double NormeForceGravitationnelle(Entite e1, Entite e2) {
+		double distance = 0;
+		double masse = 0;
+		distance = e1.getPosition().distance(e2.getPosition());
+		masse = e1.getMasse() * e2.getMasse();
+
+		return this.g * (masse / (Math.pow(distance, 2)));
+	}
+
+	/**
+	 * 
+	 * @param s, represente le systeme solaire dans lequelle ont travaille
+	 * @return le vecteur acceleration de ce systeme solaire a un point précis Le
+	 *         calcule est (sommes des force / masse de lui meme)
+	 */
+	public Vecteur CalculAcceleration(SystemeSolaire s, EntiteMobile e) {
+		List<Vecteur> vecteurs = new ArrayList<Vecteur>();
+		for (Entite ent : s.getEntityList()) {
+			Vecteur v = this.CalculeVecteurUnitaire(e, ent);
+			v.changeNorme(this.NormeForceGravitationnelle(e, ent));
+			vecteurs.add(v);
+		}
+		Vecteur sommeForce = Vecteur.somme(vecteurs);
+		sommeForce.changeNorme(sommeForce.getNorme() / e.getMasse());
+		// System.out.println("Accélération :" + this.acceleration.toString() + "\n");
+
+		return sommeForce;
+	}
+
+	/**
+	 * 
+	 * @param s, represente le systeme solaire dans lequelle ont travaille Permet de
+	 *           caculer le point suivant a l'aide d'euler explicite soit jfeg
+	 */
+	public void EulerExplicite(SystemeSolaire s, EntiteMobile selectionne) {
+		double nouvPointX = selectionne.getVitesseX() + selectionne.getPositionX();
+		double nouvPointY = selectionne.getVitesseY() + selectionne.getPostionY();
+		Point nouvPoint = new Point(nouvPointX, nouvPointY);
+
+		selectionne.getTrajectoire().addLocalisation(nouvPoint);
+
+		this.CalculAcceleration(s, selectionne);
+		double nouvVitX = selectionne.getVitesseX()
+				+ this.acceleration.getVitx() * selectionne.getTrajectoire().getDeltaT();
+		double nouvVitY = selectionne.getVitesseY()
+				+ this.acceleration.getVity() * selectionne.getTrajectoire().getDeltaT();
+
+		Vecteur nouvVecteur = new Vecteur(nouvVitX, nouvVitY);
+		selectionne.setPosition(nouvPoint);
+		selectionne.setVitesse(nouvVecteur);
+		selectionne.getTrajectoire().addVector(nouvVecteur);
+		// System.out.println("Position X :" + selectionne.getPositionX() + ", Position
+		// Y :" + selectionne.getPostionY() + "\n");
+		// System.out.println("Vecteur Vitesse X :" + selectionne.getVitesseX() + ",
+		// Vecteur Vitesse Y :" + selectionne.getVitesseY());
+	}
+
+	/**
+	 * 
+	 * @param s, represente le systeme solaire dans lequelle ont travaille Permet de
+	 *           prés calculer la trajectoire en fesant euler explicite en boucle
+	 *           mais ne peut donc pas prendre en compte un changement brusque
+	 */
+	public void CalculePreTrajectoire(SystemeSolaire s, EntiteMobile selectionne) {
+		while (true) {
+			this.EulerExplicite(s, selectionne);
 		}
 	}
 
-	public Vecteur forceBetween(Entite mobile, Entite entite) {
-		Vecteur vector = Vecteur.buildVector(mobile.getPosition(), entite.getPosition());
-		vector.changeNorme(normeForceGravitationnel(mobile, entite));
-		return vector;
+	public double getG() {
+		return g;
 	}
 
-	public Vecteur forceSystem(List<Entite> entites, Entite entiteSelected) {
-		Vecteur res = new Vecteur(0, 0);
-		for (Entite entite : entites) {
-			if (!entite.equals(entiteSelected)) {
-				res = Vecteur.somme(res, forceBetween(entite, entiteSelected));
-			}
-			;
-		}
-		return res;
+	public void setG(double g) {
+		this.g = g;
 	}
 
-	// Attention il ne fait que calculer une trajectoire approximative en fonction
-	// des coordonn� de d�part
-	// met a jour la vitesse du vaisseau et ses coordonn�
-	// Permet "d'avoir" et de mettre a jour point et vitesse suivante pour le
-	// vaisseau mais ne prend pas en compte les autres astres du systeme ni la force
-	// gravitationelle(evident ?)
-	// Pour simplifier le code et avancer pour l'instant la vitesse seras une
-	// constante
-	public void euleurExplicite(EntiteMobile mobile) {
-		double nouvoPointX = mobile.getVitesse().getVitx() + mobile.getPoint().getX();
-		double nouvoPointY = mobile.getVitesse().getVity() + mobile.getPoint().getY();
-
-		Point nouvoPoint = new Point(nouvoPointX, nouvoPointY);
-		mobile.setPoint(nouvoPoint);
-
-		mobile.getTrajectoire().localisations.add(nouvoPoint);
-		mobile.getTrajectoire().addVector(mobile.getVitesse());
-	}
-
-	// Permet d'avoir le chemin pr�s calculer
-	// Pour simplifier le code et avancer pour l'instant la vitesse seras une
-	// constante
-	public void CalculeTrajectoire(double tDebut, double tFin, EntiteMobile mobile) {
-		double t = tDebut;
-		for (int i = 1; i < (int) tFin + 1; i++) {
-			t += mobile.getTrajectoire().getPas();
-
-			double point1 = mobile.getTrajectoire().getVecteur(i - 1).getVitx()
-					+ mobile.getTrajectoire().getPoint(i - 1).getX();
-			double point2 = mobile.getTrajectoire().getVecteur(i - 1).getVity()
-					+ mobile.getTrajectoire().getPoint(i - 1).getY();
-			Point point = new Point(point1, point2);
-			mobile.getTrajectoire().localisations.add(point);
-
-			mobile.getTrajectoire().vecteurs.add(mobile.getVitesse());
+	@Override
+	public void CalculNextStep(SystemeSolaire s) {
+		for (EntiteMobile entite : s) {
+			
 		}
 	}
 
