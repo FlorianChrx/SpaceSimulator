@@ -9,7 +9,7 @@ import modele.system.SystemeSolaire;
 
 /**
  * @Date 20/09/2019
- * @author carpentm Class qui est implementé par SteppedCalculator
+ * @author carpentm Class qui est implement� par SteppedCalculator
  */
 public class SteppedCalculator implements Calculator {
 	// Les attributs
@@ -50,6 +50,7 @@ public class SteppedCalculator implements Calculator {
 		masse = e1.getMasse() * e2.getMasse();
 
 		return this.g * (masse / (Math.pow(distance, 2)));
+
 	}
 
 	/**
@@ -70,6 +71,7 @@ public class SteppedCalculator implements Calculator {
 		// System.out.println("Accélération :" + this.acceleration.toString() + "\n");
 
 		return sommeForce;
+
 	}
 
 	/**
@@ -98,6 +100,7 @@ public class SteppedCalculator implements Calculator {
 		// Y :" + selectionne.getPostionY() + "\n");
 		// System.out.println("Vecteur Vitesse X :" + selectionne.getVitesseX() + ",
 		// Vecteur Vitesse Y :" + selectionne.getVitesseY());
+
 	}
 
 	/**
@@ -125,6 +128,6 @@ public class SteppedCalculator implements Calculator {
 		for (EntiteMobile entite : s) {
 			EulerExplicite(s, entite);
 		}
-	}
 
+	}
 }
