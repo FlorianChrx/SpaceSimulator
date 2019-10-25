@@ -1,7 +1,5 @@
 package viewModele;
 
-import ihm.controller.CalculService;
-import javafx.concurrent.Service;
 import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
