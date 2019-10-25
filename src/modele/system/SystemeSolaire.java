@@ -7,8 +7,10 @@ import java.util.Observable;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+import modele.maths.BidonCalculator;
+import modele.maths.Calculator;
 import modele.maths.Point;
+import modele.maths.SteppedCalculator;
 import modele.maths.Trajectoire;
 import modele.maths.Vecteur;
 
@@ -23,7 +25,9 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 	public class MyTimerTask extends TimerTask{
 		@Override
 		public void run() {
+			
 			update();
+			
 		}
 	}
 	
@@ -34,9 +38,11 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 	protected List<EntiteMobile> etoiles;
 	protected Entite entityCenter;
 	protected Vaisseau vaisseau;
+	protected Calculator calcul = new SteppedCalculator();
 	protected double g;
 	protected double rayon;
 	protected double fa;
+	protected TimerTask tt;
 
 	public SystemeSolaire() {
 		planetes = new ArrayList<EntiteMobile>();
@@ -109,7 +115,7 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 	 */
 	public void setAllPas(double pas) {
 		for (EntiteMobile em : getEntityList()) {
-			em.setPas(pas);
+			em.trajectoire.setDeltaT(pas);
 		}
 	}
 
@@ -152,16 +158,18 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 	
 	public void myTimer() {
 		Timer t = new Timer();
-		t.scheduleAtFixedRate(new MyTimerTask(), (long)0, (long)0.005);
+		tt = new MyTimerTask();
+		t.scheduleAtFixedRate(tt, 0, 1000);
+	}
+	
+	public void cancel() {
+		tt.cancel();
 	}
 	
 	public void update() {
+		calcul.CalculNextStep(this);
 		setChanged();
 		notifyObservers();
-	}
-
-	public void cancel() {
-		
 	}
 	
 }

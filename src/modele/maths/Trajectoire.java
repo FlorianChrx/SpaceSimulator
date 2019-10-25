@@ -176,18 +176,6 @@ public class Trajectoire {
 		this(localisation, vecteur,  0.1);
 	}
 	
-	/**
-	 * Fonction permettant d'obtenir le pas actuel de cette trajectoire
-	 * @return un double représentant le pas de la trajectoire (le temps qui s'écoule entre 2 points)
-	 */
-	public double getPas() {
-		return deltaT;
-	}
-	
-	public void setPas(double pas) {
-		this.deltaT=pas;
-	}
-	
 	public void addVector(Vecteur v) {
 		vecteurs.add(v);
 	}
@@ -208,6 +196,14 @@ public class Trajectoire {
 	@Deprecated
 	public void addVitY(double vity) {
 		this.vity.add(vity);
+	}
+
+	public void setDeltaT(double deltaT) {
+		this.deltaT = deltaT;
+	}
+	
+	public double getDeltaT() {
+		return deltaT;
 	}
 	
 	
