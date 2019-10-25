@@ -1,6 +1,3 @@
-/**
- * 
- */
 package modele.maths;
 
 import static org.junit.Assert.assertEquals;
