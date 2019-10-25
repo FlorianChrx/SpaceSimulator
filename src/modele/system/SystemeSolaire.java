@@ -159,5 +159,9 @@ public class SystemeSolaire extends Observable implements Iterable<EntiteMobile>
 		setChanged();
 		notifyObservers();
 	}
+
+	public void cancel() {
+		
+	}
 	
 }

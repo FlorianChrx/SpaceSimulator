@@ -1,5 +1,7 @@
 package viewModele;
 
+import java.util.Observer;
+
 import javafx.geometry.Orientation;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -20,28 +22,33 @@ public class PlaneteManagementModel {
 		return sysol.getEntityList().size();
 	}
 
+	public void startSimulation() {
+		sysol.myTimer();
+	}
+
 	public void drawAllEntite(int len, GraphicsContext gc, Canvas c) {
 		for (Entite e : sysol.getEtoiles()) {
-			drawEntite(gc, e, c,Color.YELLOW);
+			drawEntite(gc, e, c, Color.YELLOW);
 		}
 		for (Entite e : sysol.getPlanetes()) {
-			drawEntite(gc, e, c,Color.WHITE);
+			drawEntite(gc, e, c, Color.WHITE);
 		}
 	}
 
 	public void drawCentre(GraphicsContext gc, Canvas c) {
 		gc.setFill(Color.YELLOW);
-		gc.fillOval(sysol.getEntityCenter().getPoint().getX() + (c.getWidth() / 2),
-				sysol.getEntityCenter().getPoint().getY() + (c.getHeight() / 2), sysol.getEntityCenter().getRayon(),
+		gc.fillOval(sysol.getEntityCenter().getPositionX() + (c.getWidth() / 2),
+				sysol.getEntityCenter().getPositionY() + (c.getHeight() / 2), sysol.getEntityCenter().getRayon(),
 				sysol.getEntityCenter().getRayon());
 	}
 
-	public void drawEntite(GraphicsContext gc, Entite p, Canvas c,Color col) {
+	public void drawEntite(GraphicsContext gc, Entite p, Canvas c, Color col) {
 		gc.setFill(col);
-		gc.fillOval(p.getPoint().getX() + (c.getWidth() / 2), p.getPoint().getY() + (c.getHeight() / 2), p.getRayon(),
+		System.out
+				.println("Position Planete en X : " + p.getPositionX() + " Position Planete en Y : " + p.getPositionY());
+		gc.fillOval(p.getPositionX() + (c.getWidth() / 2), (c.getHeight() / 2) - p.getPositionY(), p.getRayon(),
 				p.getRayon());
 	}
-	
 
 	public void changerBakcgroundColorCanvas(Canvas c, GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
@@ -59,4 +66,16 @@ public class PlaneteManagementModel {
 		return res;
 	}
 
+	public void clear(Canvas c, GraphicsContext gc) {
+		gc.setFill(Color.BLACK);
+		gc.fillRect(0, 0, c.getWidth(), c.getHeight());
+	}
+
+	public void addObservers(Observer o) {
+		sysol.addObserver(o);
+	}
+
+	public void cancel() {
+		sysol.cancel();
+	}
 }

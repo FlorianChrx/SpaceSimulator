@@ -19,42 +19,55 @@ import viewModele.PlaneteManagementModel;
 
 public class Interface implements Observer {
 
+	PlaneteManagementModel model;
+	Canvas c;
+	GraphicsContext gc;
+	int len;
+	
 	public Interface(Stage stage,MainController m) {
-		PlaneteManagementModel model = new PlaneteManagementModel(m.getSysol());
+		model = new PlaneteManagementModel(m.getSysol());
+		model.addObservers(this);
 		HBox h = new HBox(); 
-		int len = m.getSysol().getEntityList().size();
+		len = m.getSysol().getEntityList().size();
 		HBox slider = new HBox();
 		VBox menu = new VBox();
 		Slider pas = model.initSlider(0.5,50,25,Orientation.VERTICAL);
 		Slider ralenti = model.initSlider(0,500,0,Orientation.VERTICAL);
 		slider.getChildren().addAll(pas,ralenti);
-		Canvas c = new Canvas(500,500);
-		GraphicsContext gc = c.getGraphicsContext2D();
+		c = new Canvas(500,500);
+		gc = c.getGraphicsContext2D();
 		model.changerBakcgroundColorCanvas(c, gc);
 		model.drawAllEntite(len, gc, c);
 		m.setOnSliderPas(pas);
 		m.setOnSliderRalenti(ralenti);
 		model.drawCentre(gc, c);
-		Button b = new Button("Valider");
-		b.setOnAction(e->{
-			//model.launchCalcul();
+		Button b = new Button("Arreter");
+		Button refresh = new Button("Refresh");
+		refresh.setOnAction(e->{
+			model.clear(c, gc);
+			model.drawAllEntite(len, gc, c);
+			model.drawCentre(gc, c);
 		});
-		menu.getChildren().addAll(slider,b);
+		b.setOnAction(e->{
+			model.cancel();
+		});
+		menu.getChildren().addAll(slider,b,refresh);
 		h.getChildren().addAll(c,menu);
 		Scene sc = new Scene(h,600,500);
+		stage.setOnCloseRequest(e->{
+			model.cancel();
+		});
 		stage.setScene(sc);
 		stage.setTitle("SpaceSimulator");
 		stage.setResizable(false);
+		model.startSimulation();
 		stage.show();
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-
-	
-	
+		model.clear(c, gc);
+		model.drawAllEntite(len, gc, c);
+		model.drawCentre(gc, c);
+	}	
 }
