@@ -34,6 +34,7 @@ public class SteppedCalculator implements Calculator {
 	 */
 	public Vecteur CalculeVecteurUnitaire(Entite e1, Entite e2) {
 		Vecteur unit = Vecteur.buildVector(e1.getPosition(), e2.getPosition());
+		System.out.println(unit);
 		unit.changeNorme(1);
 		return unit;
 	}
@@ -48,7 +49,7 @@ public class SteppedCalculator implements Calculator {
 		double masse = 0;
 		distance = e1.getPosition().distance(e2.getPosition());
 		masse = e1.getMasse() * e2.getMasse();
-
+		if(distance == 0) return 0;
 		return this.g * (masse / (Math.pow(distance, 2)));
 
 	}
@@ -65,6 +66,7 @@ public class SteppedCalculator implements Calculator {
 			Vecteur v = this.CalculeVecteurUnitaire(e, ent);
 			v.changeNorme(this.NormeForceGravitationnelle(e, ent));
 			vecteurs.add(v);
+			System.out.println(v + ent.getName() + e.getName());
 		}
 		Vecteur sommeForce = Vecteur.somme(vecteurs);
 		sommeForce.changeNorme(sommeForce.getNorme() / e.getMasse());
@@ -80,6 +82,7 @@ public class SteppedCalculator implements Calculator {
 	 *           caculer le point suivant a l'aide d'euler explicite soit jfeg
 	 */
 	public void EulerExplicite(SystemeSolaire s, EntiteMobile selectionne) {
+		
 		double nouvPointX = selectionne.getVitesseX() + selectionne.getPositionX();
 		double nouvPointY = selectionne.getVitesseY() + selectionne.getPositionY();
 		Point nouvPoint = new Point(nouvPointX, nouvPointY);
@@ -96,6 +99,9 @@ public class SteppedCalculator implements Calculator {
 		selectionne.setPosition(nouvPoint);
 		selectionne.setVitesse(nouvVecteur);
 		selectionne.getTrajectoire().addVector(nouvVecteur);
+		
+		
+		
 		// System.out.println("Position X :" + selectionne.getPositionX() + ", Position
 		// Y :" + selectionne.getPostionY() + "\n");
 		// System.out.println("Vecteur Vitesse X :" + selectionne.getVitesseX() + ",

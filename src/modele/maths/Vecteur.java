@@ -69,6 +69,7 @@ public class Vecteur {
 	}
 
 	public void changeNorme(double norme) {
+		if(getNorme() == 0) return;
 		double ratio = norme / getNorme();
 		vitx *= ratio;
 		vity *= ratio;
