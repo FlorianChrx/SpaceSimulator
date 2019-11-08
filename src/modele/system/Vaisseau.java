@@ -1,6 +1,6 @@
 package modele.system;
 
-import modele.maths.Point;
+import modele.maths.Positionnable;
 import modele.maths.Trajectoire;
 import modele.maths.Vecteur;
 
@@ -15,7 +15,7 @@ public class Vaisseau extends EntiteMobile {
 	protected double pRetro; // propulseur
 	
 	
-	public Vaisseau(Point positionInitial, double masse, double rayon, String name, Vecteur vitesseInitial,
+	public Vaisseau(Positionnable positionInitial, double masse, double rayon, String name, Vecteur vitesseInitial,
 			Trajectoire trajectoire,double pPrincipale,double pRetro) {
 		super(positionInitial, masse, rayon, name, vitesseInitial, trajectoire);
 		this.pPrincipale=pPrincipale;

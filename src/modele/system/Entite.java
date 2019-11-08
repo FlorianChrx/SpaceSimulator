@@ -1,6 +1,7 @@
 package modele.system;
 
 import modele.maths.Point;
+import modele.maths.Positionnable;
 
 /**
  * @Date 20/09/2019
@@ -8,15 +9,36 @@ import modele.maths.Point;
  * Class abstract cr�ant une entiter
  */
 
-public abstract class Entite {
+public abstract class Entite implements Positionnable {
 	protected Point position; // compos� d'un x et d'un y
 	protected double masse; //en kg
 	protected double rayon; //en m
 	protected String name; // nom de l'entit�
 	
 	
-	public Entite(Point position, double masse, double rayon, String name) {
-		this.position = position;
+	
+	@Override
+	public double getX() {
+		return position.getX();
+	}
+
+	@Override
+	public double getY() {
+		return position.getY();
+	}
+
+	@Override
+	public void setX(double x) {
+		position.setX(x);
+	}
+
+	@Override
+	public void setY(double y) {
+		position.setY(y);
+	}
+
+	public Entite(Positionnable position, double masse, double rayon, String name) {
+		this.position = new Point(position.getX(), position.getY());
 		this.masse = masse;
 		this.rayon = rayon;
 		this.name = name;

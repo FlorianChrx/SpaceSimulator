@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 public class Trajectoire {
 	// attributs
-	protected List<Point> localisations;// Attribut representant la trajectoire � travers une succession de points
+	protected List<Positionnable> localisations;// Attribut representant la trajectoire � travers une succession de points
 	protected List<Vecteur> vecteurs;// Attribut repr�sentant la liste des vecteurs li�s aux points de la trajectoire
 	protected double deltaT;// Attribut repr�sentant le pas entre chaque calcul de point
 
@@ -46,7 +46,7 @@ public class Trajectoire {
 	 * @param localisations
 	 * @param pas
 	 */
-	public Trajectoire(List<Point> localisations, List<Vecteur> vecteur, double pas) {
+	public Trajectoire(List<Positionnable> localisations, List<Vecteur> vecteur, double pas) {
 		super();
 		this.localisations = localisations;
 		this.deltaT = pas;
@@ -60,7 +60,7 @@ public class Trajectoire {
 	 * @param pas
 	 */
 	public Trajectoire(double pas) {
-		this(new ArrayList<Point>(), new ArrayList<Vecteur>(), pas);
+		this(new ArrayList<Positionnable>(), new ArrayList<Vecteur>(), pas);
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class Trajectoire {
 	 * 
 	 * @param localisation
 	 */
-	public Trajectoire(List<Point> localisation, List<Vecteur> vecteur) {
+	public Trajectoire(List<Positionnable> localisation, List<Vecteur> vecteur) {
 		this(localisation, vecteur, 0.1);
 	}
 
@@ -121,11 +121,11 @@ public class Trajectoire {
 		return localisations.get(idx).getY();
 	}
 
-	public void addLocalisation(Point point) {
-		localisations.add(point);
+	public void addLocalisation(Positionnable position) {
+		localisations.add(position);
 	}
 
-	public Point getLastPoint() {
+	public Positionnable getLastPoint() {
 		return localisations.get(localisations.size() - 1);
 	}
 

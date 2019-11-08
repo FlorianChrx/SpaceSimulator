@@ -48,7 +48,7 @@ public class Vecteur {
 		return res;
 	}
 
-	public static Vecteur buildVector(Point p1, Point p2) {
+	public static Vecteur buildVector(Positionnable p1, Positionnable p2) {
 		return new Vecteur(p2.getX() - p1.getX(), p2.getY() - p1.getY());
 	}
 

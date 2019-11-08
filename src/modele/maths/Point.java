@@ -5,7 +5,7 @@ package modele.maths;
  * @author lefrancn Class Point permettant de creer des points a partir
  *         d'absysse et d'ordonn�
  */
-public class Point {
+public class Point implements Positionnable {
 	protected double x; // axe des absysses
 	protected double y; // axe des ordonn�
 

@@ -1,6 +1,6 @@
 package modele.system;
 
-import modele.maths.Point;
+import modele.maths.Positionnable;
 import modele.maths.Trajectoire;
 import modele.maths.Vecteur;
 
@@ -11,7 +11,7 @@ import modele.maths.Vecteur;
  */
 public class Etoile extends EntiteMobile {
 
-	public Etoile(Point position, double masse, double rayon, String name, Vecteur vitesse, Trajectoire trajectoire) {
+	public Etoile(Positionnable position, double masse, double rayon, String name, Vecteur vitesse, Trajectoire trajectoire) {
 		super(position, masse, rayon, name, vitesse, trajectoire);
 	}
 

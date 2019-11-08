@@ -1,6 +1,6 @@
 package modele.system;
 
-import modele.maths.Point;
+import modele.maths.Positionnable;
 import modele.maths.Trajectoire;
 import modele.maths.Vecteur;
 
@@ -13,7 +13,7 @@ public abstract class EntiteMobile extends Entite {
 	protected Vecteur vitesse;
 	protected Trajectoire trajectoire;
 
-	public EntiteMobile(Point position, double masse, double rayon, String name, Vecteur vitesse,
+	public EntiteMobile(Positionnable position, double masse, double rayon, String name, Vecteur vitesse,
 			Trajectoire trajectoire) {
 		super(position, masse, rayon, name);
 		this.vitesse = vitesse;
