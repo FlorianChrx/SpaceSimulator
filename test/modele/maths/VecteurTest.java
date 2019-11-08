@@ -1,7 +1,6 @@
 package modele.maths;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,8 +8,8 @@ import java.util.List;
 import org.junit.Test;
 
 /**
- * @author chirauxf
- *	Classe permettant de tester la Classe {@link modele.maths.Vecteur}
+ * @author chirauxf Classe permettant de tester la Classe
+ *         {@link modele.maths.Vecteur}
  */
 public class VecteurTest {
 
@@ -76,8 +75,8 @@ public class VecteurTest {
 	public void testBuildVector() {
 		Point a = new Point(2.5, 50);
 		Point b = new Point(2.5, 100);
-		assertEquals(Vecteur.buildVector(a, b), new Vecteur(0, 50));
-		assertEquals(Vecteur.buildVector(b, a), new Vecteur(0, -50));
+		assertEquals(new Vecteur(0, 50), Vecteur.buildVector(a, b));
+		assertEquals(new Vecteur(0, -50), Vecteur.buildVector(b, a));
 	}
 
 	/**
@@ -85,7 +84,9 @@ public class VecteurTest {
 	 */
 	@Test
 	public void testGetNorme() {
-		fail("Not yet implemented");
+		assertEquals(50, new Vecteur(0, 50).getNorme(), 50 * 0.001);
+		assertEquals(2000, new Vecteur(0, 2000).getNorme(), 2000 * 0.001);
+		assertEquals(50.5, new Vecteur(0, 50.5).getNorme(), 50.5 * 0.001);
 	}
 
 	/**
@@ -93,7 +94,10 @@ public class VecteurTest {
 	 */
 	@Test
 	public void testChangeNorme() {
-		fail("Not yet implemented");
+		Vecteur v = new Vecteur(0, 50);
+		assertEquals(50, v.getNorme(), 50 * 0.001);
+		v.changeNorme(20);
+		assertEquals(20, v.getNorme(), 20 * 0.001);
 	}
 
 }
