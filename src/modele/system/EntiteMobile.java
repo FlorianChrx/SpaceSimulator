@@ -43,11 +43,11 @@ public abstract class EntiteMobile extends Entite {
 	}
 
 	public double getVitesseX() {
-		return getVitesse().getVitx();
+		return getVitesse().getX();
 	}
 
 	public double getVitesseY() {
-		return getVitesse().getVity();
+		return getVitesse().getY();
 	}
 
 }

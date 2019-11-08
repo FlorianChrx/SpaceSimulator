@@ -91,9 +91,9 @@ public class SteppedCalculator implements Calculator {
 
 		this.CalculAcceleration(s, selectionne);
 		double nouvVitX = selectionne.getVitesseX()
-				+ this.acceleration.getVitx() * selectionne.getTrajectoire().getDeltaT();
+				+ this.acceleration.getX() * selectionne.getTrajectoire().getDeltaT();
 		double nouvVitY = selectionne.getVitesseY()
-				+ this.acceleration.getVity() * selectionne.getTrajectoire().getDeltaT();
+				+ this.acceleration.getY() * selectionne.getTrajectoire().getDeltaT();
 
 		Vecteur nouvVecteur = new Vecteur(nouvVitX, nouvVitY);
 		selectionne.setPosition(nouvPoint);

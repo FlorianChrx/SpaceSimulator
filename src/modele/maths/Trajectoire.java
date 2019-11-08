@@ -110,7 +110,7 @@ public class Trajectoire {
 	}
 
 	public double getVecteurX(int idx) {
-		return this.vecteurs.get(idx).getVitx();
+		return this.vecteurs.get(idx).getX();
 	}
 	
 	public void addVector(Vecteur v) {

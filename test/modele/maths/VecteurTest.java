@@ -100,4 +100,17 @@ public class VecteurTest {
 		assertEquals(20, v.getNorme(), 20 * 0.001);
 	}
 
+	/**
+	 * Test method for
+	 * {@link modele.maths.Vecteur#translation(Positionnable, Vecteur)}.
+	 */
+	@Test
+	public void testTranslation() {
+		Point p = new Point(0, 0);
+		Vecteur v = new Vecteur(5, 5);
+		assertEquals(0, 0, 0.001);
+		Vecteur.translation(p, v);
+		assertEquals(0, 0, 0.001);
+	}
+
 }

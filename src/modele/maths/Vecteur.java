@@ -10,34 +10,14 @@ import java.util.List;
  * 
  */
 
-public class Vecteur {
-	protected double vitx; // vecteur en absysse, on suppose qu'on part de 0
-	protected double vity; // vecteur en ordonn�, on suppose qu'on part de 0
+public class Vecteur extends Point {
 
-	public Vecteur(double vitx, double vity) {
-		super();
-		this.vitx = vitx;
-		this.vity = vity;
-	}
-
-	public double getVitx() {
-		return vitx;
-	}
-
-	public void setVitx(double vitx) {
-		this.vitx = vitx;
-	}
-
-	public double getVity() {
-		return vity;
-	}
-
-	public void setVity(double vity) {
-		this.vity = vity;
+	public Vecteur(double x, double y) {
+		super(x, y);
 	}
 
 	public static Vecteur somme(Vecteur v1, Vecteur v2) {
-		return new Vecteur(v1.getVitx() + v2.getVitx(), v1.getVity() + v2.getVity());
+		return new Vecteur(v1.getX() + v2.getX(), v1.getY() + v2.getY());
 	}
 
 	public static Vecteur somme(List<Vecteur> vecteurs) {
@@ -53,26 +33,27 @@ public class Vecteur {
 	}
 
 	public double getNorme() {
-		return Math.sqrt(vitx * vitx + vity * vity);
+		return Math.sqrt(x * x + y * y);
 	}
 
 	public Vecteur Produit(double k, Vecteur v) {
-		v.setVitx(v.getVitx() * k);
-		v.setVity(getVity() * k);
+		v.setX(v.getX() * k);
+		v.setY(getY() * k);
 		return v;
 	}
-	
+
 	public Vecteur Division(double k) {
-		this.setVitx(this.getVitx() / k);
-		this.setVity(this.getVity() / k);
+		this.setX(this.getX() / k);
+		this.setY(this.getY() / k);
 		return this;
 	}
 
 	public void changeNorme(double norme) {
-		if(getNorme() == 0) return;
+		if (getNorme() == 0)
+			return;
 		double ratio = norme / getNorme();
-		vitx *= ratio;
-		vity *= ratio;
+		x *= ratio;
+		y *= ratio;
 	}
 
 	@Override
@@ -80,9 +61,9 @@ public class Vecteur {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(vitx);
+		temp = Double.doubleToLongBits(x);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
-		temp = Double.doubleToLongBits(vity);
+		temp = Double.doubleToLongBits(y);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -96,20 +77,26 @@ public class Vecteur {
 		if (getClass() != obj.getClass())
 			return false;
 		Vecteur other = (Vecteur) obj;
-		if (Double.doubleToLongBits(vitx) != Double.doubleToLongBits(other.vitx))
+		if (Double.doubleToLongBits(x) != Double.doubleToLongBits(other.x))
 			return false;
-		if (Double.doubleToLongBits(vity) != Double.doubleToLongBits(other.vity))
+		if (Double.doubleToLongBits(y) != Double.doubleToLongBits(other.y))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Vecteur [vitx=" + vitx + ", vity=" + vity + "]";
+		return "Vecteur [vitx=" + x + ", vity=" + y + "]";
 	}
 
-	public static Vecteur somme(Vecteur...vecteurs) {
+	public static Vecteur somme(Vecteur... vecteurs) {
 		return somme(Arrays.asList(vecteurs));
+	}
+
+	public static void translation(Positionnable p, Vecteur v) {
+		p.setX(p.getX() + v.getX());
+		p.setY(p.getY() + v.getY());
+		;
 	}
 
 }
