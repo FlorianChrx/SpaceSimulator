@@ -1,9 +1,8 @@
-package test;
+package modele.maths;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
-import math.Point;
 
 public class PointTest {
 	Point p1, p2, p3, p4;
@@ -25,7 +24,7 @@ public class PointTest {
 	
 	@Test
 	public void testProduit() {
-		System.out.println("On cherche a avoir 0,0 " + Point.produit(p1, 8).toString());
-		System.out.println("On cherche a avoir 4,4 " + Point.produit(p3, 2));
+		//System.out.println("On cherche a avoir 0,0 " + Point.produit(p1, 8).toString());
+		//System.out.println("On cherche a avoir 4,4 " + Point.produit(p3, 2));
 	}
 }

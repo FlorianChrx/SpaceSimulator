@@ -51,16 +51,4 @@ public class Point implements Positionnable {
 	public static double distance(Point p1, Point p2) {
 		return Math.sqrt(Math.pow((p1.getX() - p2.getX()), 2) + Math.pow((p1.getY() - p2.getY()), 2));
 	}
-
-	/**
-	 * 
-	 * @param p, un point
-	 * @param k, un double coefficient directeur
-	 * @return le nouveau point qui a �t� multiplier par le produit
-	 */
-	public Point produit(Point p, double k) {
-		p.setX(p.getX() * k);
-		p.setY(p.getY() * k);
-		return p;
-	}
 }
