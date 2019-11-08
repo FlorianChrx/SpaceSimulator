@@ -125,7 +125,7 @@ public class Trajectoire {
 		localisations.add(position);
 	}
 
-	public Positionnable getLastPoint() {
+	public Positionnable getLastPositionnable() {
 		return localisations.get(localisations.size() - 1);
 	}
 
